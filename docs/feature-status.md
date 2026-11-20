@@ -6,16 +6,16 @@ Status legend: **Complete** · **Partial** · **Placeholder** · **Not started**
 
 | Item | Status | Notes |
 | --- | --- | --- |
-| Landing page (`/`) | Complete | Full visual reset: editorial paper-and-ink system, numbered sections, document-style product previews, self-hosted Unsplash photography and four-role preview switcher. |
+| Landing page (`/`) | Complete | Product-led white/violet reset: real product surfaces in the hero, one contextual photo, four-role preview switcher and support CTA. |
 | Role previews | Complete | Working teacher, student, school leader and parent previews on the public page, each linking to its demo workspace via `/demo?role=<role>`. |
 | Demo shell | Complete | Shared four-role shell with sidebar and header role switchers, query-based deep links, live view announcements, mobile drawer, demo banner and native support dialog. |
-| Teacher workspace | Complete | Review desk with evidence trail, assessment queue, local review state, class register, grounded tutor chat and evidence notes. |
+| Teacher workspace | Complete | Review desk with evidence trail, assessment search/filters/empty state, local review state, card-based classes, grounded scripted tutor chat and evidence notes. |
 | Student workspace | Complete | Subjects, guided practice with validation and hints, subject filtering and student-facing grounded tutor. |
-| School leader workspace | Complete | School overview, class register, grade scoping and evidence reports with source/owner/next check. |
+| School leader workspace | Complete | School overview, card-based classes with grade scoping and evidence reports with source/owner/next check. |
 | Parent workspace | Complete | Linked-child overview, teacher feedback with subject filtering and local "Mark as seen", and upcoming assessments. |
 | Support CTA | Complete | All CTAs open a composed email to `support@maarivo.com`. Address is a placeholder pending confirmation. |
-| Design tokens & typography | Complete | Warm paper canvas, deep ink, restrained purple accent and accessible ochre labels. General Sans + Inter self-hosted in `public/fonts`; 16px mobile text inputs. |
-| Accessibility shell | Complete | Skip link, native modal dialog, visible focus styles, ARIA-pressed controls, live region for view changes and Escape handling for the mobile drawer. |
+| Design tokens & typography | Complete | Cool white canvas, near-black ink, restrained violet accent. General Sans + Inter self-hosted in `public/fonts`; 15px secondary text and 16px mobile text inputs. |
+| Accessibility shell | Complete | Skip link, native modal dialog, visible focus styles, ARIA-pressed controls, live region for view changes, Escape handling and reduced-motion support. |
 
 ## Explicitly not production functionality
 
@@ -31,24 +31,24 @@ Status legend: **Complete** · **Partial** · **Placeholder** · **Not started**
 
 - `npm run lint` — passes.
 - `npm run build` — passes, TypeScript clean, all routes statically generated.
-- Lighthouse: accessibility, best practices and SEO all score **1.00** on `/` and `/demo` (run sequentially).
-- No console errors and no failed or 4xx/5xx requests on `/` or any of the four demo roles.
-- Zero horizontal overflow at 390px, 768px, 1024px and 1440px on `/` and all four role entry points.
+- Lighthouse: accessibility, best practices and SEO all score **1.00** on `/`, `/demo` and a deep-linked demo view (run sequentially).
+- No console errors and no failed or 4xx/5xx asset requests on `/` or the demo routes.
+- Zero horizontal overflow at 390px, 768px, 1024px and 1440px on `/` and the demo overview.
+- No visible text below 15px on `/` or the demo overview; zero tables remain in demo views.
 - Deep links verified for all four roles and for teacher/student/leader/parent subviews.
 - Public role switcher verified: all four previews change copy, sample view and CTA link.
-- Public mobile menu opens and closes with Escape.
-- Demo mobile drawer opens, navigates and closes with Escape; skip link keeps the query-based demo route intact.
-- Support dialog opens modally from the demo sidebar and closes with Escape.
-- Student practice: incorrect/correct answer states, hint, filter, 16px mobile input.
+- Public mobile menu and demo mobile drawer verified at 390px: open, navigate and close.
+- Support dialog opens modally from the demo sidebar and closes from its close control.
 - Teacher: status filters, search empty state and clear action, local mark-as-reviewed, scripted tutor reply with source grounding.
-- Leader: grade filter and navigation from a signal to the full evidence report.
+- Student: practice validation, hint and filter.
+- Leader: grade filter class scoping and selectable evidence reports.
 - Parent: feedback subject filter, "Mark as seen" status and upcoming assessments.
 
-Visual screenshots could not be inspected by the implementing model because the browser window was not visible to the capture tool. Layout was verified through DOM measurements, accessibility snapshots and automated audits instead.
+Visual screenshots were generated but could not be inspected by the implementing model. Layout was verified through DOM measurements, accessibility snapshots and automated audits instead; final visual approval from the user is still outstanding.
 
 ## Image sourcing note
 
-Photography is self-hosted from Unsplash in `public/images`, including the added `student-device.jpg` and `resource-shelf.jpg`. Freepik was investigated but its pages block automated retrieval and its free licence requires attribution, so no Freepik asset was embedded. Images from ojuwa.com and synacad.com were not copied; only their editorial rhythm and role-based storytelling principles were studied. The 15 attached images were treated as reference only and were not embedded.
+Photography is self-hosted from Unsplash in `public/images`. Only one image is embedded in the current page; the other local assets are unused. Freepik was investigated but its pages block automated retrieval and its free licence requires attribution, so no Freepik asset was embedded. Images from ojuwa.com and synacad.com were not copied; only their editorial rhythm and role-based storytelling principles were studied. The 15 attached images were treated as reference only and were not embedded.
 
 ## Next up
 
@@ -56,3 +56,4 @@ Photography is self-hosted from Unsplash in `public/images`, including the added
 - Authentication and onboarding flows.
 - Organisation, class and subject management with real permissions.
 - Confirm a production support inbox.
+- User visual approval of the new direction.

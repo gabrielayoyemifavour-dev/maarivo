@@ -5,21 +5,21 @@ type Variant = "primary" | "accent" | "outline" | "ghost" | "light";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap transition-colors duration-150 ease-out active:translate-y-px disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors duration-150 ease-out disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
   primary: "bg-primary text-white hover:bg-primary-raised",
   accent: "bg-accent text-white hover:bg-accent-deep",
   outline:
-    "border border-line-strong bg-surface/70 text-primary hover:border-primary/40 hover:bg-surface",
+    "border border-line-strong bg-surface text-primary hover:border-primary/40 hover:bg-surface-muted",
   ghost: "text-primary hover:bg-surface-muted",
-  light: "bg-surface text-primary hover:bg-canvas",
+  light: "bg-surface text-primary hover:bg-surface-muted",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-9 px-3.5 text-sm",
-  md: "h-11 px-5 text-sm",
-  lg: "h-12 px-6 text-[15px]",
+  sm: "h-10 px-4 text-[15px]",
+  md: "h-12 px-5 text-[15px]",
+  lg: "h-14 px-7 text-base",
 };
 
 type Shared = {
@@ -29,18 +29,23 @@ type Shared = {
   children: ReactNode;
 };
 
-type ButtonProps = Shared &
-  (
-    | ({ href: string } & Omit<AnchorHTMLAttributesForLink, "href">)
-    | ({ href?: never } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className" | "children">)
-  );
-
 type AnchorHTMLAttributesForLink = {
   target?: string;
   rel?: string;
   "aria-label"?: string;
   id?: string;
 };
+
+type ButtonProps = Shared &
+  (
+    | ({ href: string } & Omit<AnchorHTMLAttributesForLink, "href">)
+    | ({
+        href?: never;
+      } & Omit<
+        ButtonHTMLAttributes<HTMLButtonElement>,
+        "className" | "children"
+      >)
+  );
 
 export function Button({
   variant = "primary",
@@ -100,7 +105,7 @@ export function Badge({
 }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-sm px-2 py-1 text-xs font-medium whitespace-nowrap ${badgeStyles[variant]} ${className}`}
+      className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[15px] font-medium whitespace-nowrap ${badgeStyles[variant]} ${className}`}
     >
       {children}
     </span>
@@ -115,7 +120,7 @@ export function Panel({
   className?: string;
 }) {
   return (
-    <div className={`rounded-md border border-line bg-surface ${className}`}>
+    <div className={`rounded-xl border border-line bg-surface ${className}`}>
       {children}
     </div>
   );

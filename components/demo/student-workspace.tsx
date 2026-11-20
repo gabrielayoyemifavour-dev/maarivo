@@ -72,44 +72,44 @@ function TaskWork({
     <div className="rounded-lg border border-line bg-surface-muted p-4 sm:p-5">
       <div className="flex flex-wrap items-start justify-between gap-3 border-b border-line pb-4">
         <div>
-          <p className="text-xs font-semibold text-accent-deep">
+          <p className="text-[15px] font-semibold text-accent-deep">
             {task.subject} · {task.topic}
           </p>
           <h3 className="mt-1 font-brand text-base font-semibold text-primary">
             {task.title}
           </h3>
-          <p className="mt-1 text-xs text-muted">Due {task.due}</p>
+          <p className="mt-1 text-[15px] text-muted">Due {task.due}</p>
         </div>
         <TaskBadge status={task.status} />
       </div>
 
-      <p className="mt-4 text-sm leading-[1.7] text-ink-soft text-pretty">
+      <p className="mt-4 text-[15px] leading-[1.7] text-ink-soft text-pretty">
         {task.prompt}
       </p>
 
       <form onSubmit={onSubmit} className="mt-4">
         {task.kind === "text" ? (
           <label className="block">
-            <span className="text-xs font-semibold text-primary">Your answer</span>
+            <span className="text-[15px] font-semibold text-primary">Your answer</span>
             <input
               value={answer}
               onChange={(event) => onAnswerChange(event.target.value)}
               placeholder="Type your answer"
               aria-label="Your answer"
               aria-invalid={feedback?.state === "incorrect"}
-              className="mt-2 w-full rounded-lg border border-line-strong bg-surface px-3 py-2.5 text-base text-primary outline-none placeholder:text-muted/80 sm:text-sm"
+              className="mt-2 w-full rounded-lg border border-line-strong bg-surface px-3 py-2.5 text-base text-primary outline-none placeholder:text-muted/80 sm:text-[15px]"
             />
           </label>
         ) : (
           <fieldset>
-            <legend className="text-xs font-semibold text-primary">
+            <legend className="text-[15px] font-semibold text-primary">
               Choose one answer
             </legend>
             <div className="mt-2 space-y-2">
               {task.options?.map((option) => (
                 <label
                   key={option}
-                  className="flex cursor-pointer items-start gap-2.5 rounded-lg border border-line bg-surface px-3 py-2.5 text-sm leading-snug text-ink-soft has-[:checked]:border-accent-deep has-[:checked]:bg-accent-soft/50"
+                  className="flex cursor-pointer items-start gap-2.5 rounded-lg border border-line bg-surface px-3 py-2.5 text-[15px] leading-snug text-ink-soft has-[:checked]:border-accent-deep has-[:checked]:bg-accent-soft"
                 >
                   <input
                     type="radio"
@@ -135,7 +135,7 @@ function TaskWork({
             type="button"
             onClick={onToggleHint}
             aria-expanded={hintVisible}
-            className="inline-flex items-center gap-1.5 rounded-md text-xs font-semibold text-accent-deep hover:underline"
+            className="inline-flex items-center gap-1.5 rounded-lg text-[15px] font-semibold text-accent-deep hover:underline"
           >
             <Lightbulb size={14} strokeWidth={1.8} aria-hidden="true" />
             {hintVisible ? "Hide hint" : "Show a hint"}
@@ -144,7 +144,7 @@ function TaskWork({
       </form>
 
       {hintVisible && (
-        <div className="mt-4 rounded-md border border-accent/25 bg-accent-soft p-3 text-xs leading-relaxed text-ink-soft text-pretty">
+        <div className="mt-4 rounded-lg border border-accent/25 bg-accent-soft p-3 text-[15px] leading-relaxed text-ink-soft text-pretty">
           <p className="font-semibold text-accent-deep">Hint</p>
           <p className="mt-1">{task.hint}</p>
         </div>
@@ -154,7 +154,7 @@ function TaskWork({
         {feedback && (
           <div
             role={feedback.state === "correct" ? "status" : "alert"}
-            className={`flex items-start gap-2 rounded-md border p-3 text-xs leading-relaxed text-pretty ${
+            className={`flex items-start gap-2 rounded-lg border p-3 text-[15px] leading-relaxed text-pretty ${
               feedback.state === "correct"
                 ? "border-success/25 bg-success-soft text-success"
                 : "border-warning/30 bg-warning-soft text-warning"
@@ -180,7 +180,7 @@ function TaskWork({
         )}
       </div>
 
-      <p className="mt-4 border-t border-line pt-3 text-xs text-muted text-pretty">
+      <p className="mt-4 border-t border-line pt-3 text-[15px] text-muted text-pretty">
         Your answer changes this preview only. Nothing is saved to a school record.
       </p>
     </div>
@@ -359,7 +359,7 @@ export function StudentWorkspace({
                   <h2 className="font-brand text-lg font-semibold text-primary">
                     Next in your learning
                   </h2>
-                  <p className="mt-1 text-xs leading-relaxed text-muted text-pretty">
+                  <p className="mt-1 text-[15px] leading-relaxed text-muted text-pretty">
                     Each task keeps its source and teacher note beside your work.
                   </p>
                 </div>
@@ -383,10 +383,10 @@ export function StudentWorkspace({
                         : "border-line bg-surface hover:border-line-strong hover:bg-surface-muted"
                     }`}
                   >
-                    <span className="block truncate text-xs font-semibold text-primary">
+                    <span className="block truncate text-[15px] font-semibold text-primary">
                       {item.title}
                     </span>
-                    <span className="mt-0.5 block text-xs text-muted">
+                    <span className="mt-0.5 block text-[15px] text-muted">
                       {item.subject} · due {item.due}
                     </span>
                   </button>
@@ -396,7 +396,7 @@ export function StudentWorkspace({
               <div className="mt-6">{taskWork}</div>
 
               <div className="mt-6 border-t border-line pt-5">
-                <h3 className="font-brand text-sm font-semibold text-primary">
+                <h3 className="font-brand text-[15px] font-semibold text-primary">
                   How this answer is grounded
                 </h3>
                 <div className="mt-4">
@@ -416,19 +416,19 @@ export function StudentWorkspace({
                 </h2>
                 <dl className="mt-4 divide-y divide-line">
                   <div className="flex items-baseline justify-between gap-4 py-3">
-                    <dt className="text-xs text-muted">Completed in preview</dt>
+                    <dt className="text-[15px] text-muted">Completed in preview</dt>
                     <dd className="font-brand text-lg font-semibold text-primary tabular-nums">
                       {completedIds.length} of {studentTasks.length}
                     </dd>
                   </div>
                   <div className="flex items-baseline justify-between gap-4 py-3">
-                    <dt className="text-xs text-muted">Due today</dt>
+                    <dt className="text-[15px] text-muted">Due today</dt>
                     <dd className="font-brand text-lg font-semibold text-primary tabular-nums">
                       1
                     </dd>
                   </div>
                 </dl>
-                <p className="mt-3 text-xs leading-relaxed text-muted text-pretty">
+                <p className="mt-3 text-[15px] leading-relaxed text-muted text-pretty">
                   Progress here is local to this demo and does not follow you to another role.
                 </p>
               </Panel>
@@ -441,7 +441,7 @@ export function StudentWorkspace({
                   <button
                     type="button"
                     onClick={() => onNavigate("subjects")}
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-accent-deep hover:underline"
+                    className="inline-flex items-center gap-1 text-[15px] font-semibold text-accent-deep hover:underline"
                   >
                     All
                     <ArrowRight size={13} strokeWidth={1.8} aria-hidden="true" />
@@ -453,10 +453,10 @@ export function StudentWorkspace({
                       key={item.name}
                       className="flex items-center justify-between gap-3 border-t border-line pt-3 first:border-0 first:pt-0"
                     >
-                      <span className="text-xs font-medium text-primary">
+                      <span className="text-[15px] font-medium text-primary">
                         {item.name}
                       </span>
-                      <span className="text-xs text-muted tabular-nums">
+                      <span className="text-[15px] text-muted tabular-nums">
                         {item.progress}%
                       </span>
                     </div>
@@ -484,7 +484,7 @@ export function StudentWorkspace({
                   type="button"
                   onClick={() => changePracticeFilter(filter)}
                   aria-pressed={practiceFilter === filter}
-                  className={`rounded-md border px-3 py-2 text-xs font-medium ${
+                  className={`rounded-lg border px-3 py-2 text-[15px] font-medium ${
                     practiceFilter === filter
                       ? "border-primary bg-primary text-white"
                       : "border-line bg-surface text-muted-strong hover:border-line-strong hover:bg-surface-muted"
@@ -514,22 +514,22 @@ export function StudentWorkspace({
                       aria-pressed={item.id === selectedTask.id}
                       className={`w-full px-5 py-4 text-left ${
                         item.id === selectedTask.id
-                          ? "bg-accent-soft/50"
+                          ? "bg-accent-soft"
                           : "hover:bg-surface-muted"
                       }`}
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
-                          <p className="truncate text-sm font-semibold text-primary">
+                          <p className="truncate text-[15px] font-semibold text-primary">
                             {item.title}
                           </p>
-                          <p className="mt-1 truncate text-xs text-muted">
+                          <p className="mt-1 truncate text-[15px] text-muted">
                             {item.subject} · {item.topic}
                           </p>
                         </div>
                         <TaskBadge status={item.status} />
                       </div>
-                      <p className="mt-3 text-xs text-muted">Due {item.due}</p>
+                      <p className="mt-3 text-[15px] text-muted">Due {item.due}</p>
                     </button>
                   ))}
                 </div>
@@ -573,10 +573,10 @@ export function StudentWorkspace({
                     }`}
                   >
                     <div className="flex items-center justify-between gap-3">
-                      <span className="text-sm font-semibold text-primary">
+                      <span className="text-[15px] font-semibold text-primary">
                         {item.name}
                       </span>
-                      <span className="text-xs text-muted tabular-nums">
+                      <span className="text-[15px] text-muted tabular-nums">
                         {item.progress}%
                       </span>
                     </div>
@@ -593,7 +593,7 @@ export function StudentWorkspace({
                         style={{ width: `${item.progress}%` }}
                       />
                     </div>
-                    <p className="mt-2 text-xs text-muted">
+                    <p className="mt-2 text-[15px] text-muted">
                       {item.teacher} · {item.topics} topics
                     </p>
                   </button>
@@ -603,18 +603,18 @@ export function StudentWorkspace({
 
             {subject && (
               <Panel className="p-5 sm:p-6">
-                <p className="text-xs font-semibold text-accent-deep">
+                <p className="text-[15px] font-semibold text-accent-deep">
                   Current focus
                 </p>
                 <h2 className="mt-1 font-brand text-lg font-semibold text-primary">
                   {subject.name}
                 </h2>
-                <p className="mt-1 text-xs text-muted">
+                <p className="mt-1 text-[15px] text-muted">
                   Taught by {subject.teacher}
                 </p>
 
                 <div className="mt-6 space-y-4">
-                  <div className="flex items-start gap-3 rounded-md border border-line bg-surface-muted p-4">
+                  <div className="flex items-start gap-3 rounded-lg border border-line bg-surface-muted p-4">
                     <BookOpen
                       size={16}
                       strokeWidth={1.8}
@@ -622,15 +622,15 @@ export function StudentWorkspace({
                       aria-hidden="true"
                     />
                     <div>
-                      <p className="text-xs font-semibold text-primary">
+                      <p className="text-[15px] font-semibold text-primary">
                         Next topic
                       </p>
-                      <p className="mt-1 text-sm text-ink-soft">
+                      <p className="mt-1 text-[15px] text-ink-soft">
                         {subject.next}
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3 rounded-md border border-line p-4">
+                  <div className="flex items-start gap-3 rounded-lg border border-line p-4">
                     <CheckCircle2
                       size={16}
                       strokeWidth={1.8}
@@ -638,10 +638,10 @@ export function StudentWorkspace({
                       aria-hidden="true"
                     />
                     <div>
-                      <p className="text-xs font-semibold text-primary">
+                      <p className="text-[15px] font-semibold text-primary">
                         Approved source
                       </p>
-                      <p className="mt-1 text-sm text-ink-soft">
+                      <p className="mt-1 text-[15px] text-ink-soft">
                         {subject.source}
                       </p>
                     </div>
@@ -653,7 +653,7 @@ export function StudentWorkspace({
                     Go to your next task
                     <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
                   </Button>
-                  <p className="mt-2 text-xs text-muted">
+                  <p className="mt-2 text-[15px] text-muted">
                     Sample subject records · no live school data
                   </p>
                 </div>

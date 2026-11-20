@@ -39,7 +39,7 @@ function ScopeFilter({
           type="button"
           onClick={() => onChange(scope)}
           aria-pressed={value === scope}
-          className={`rounded-md border px-3 py-2 text-xs font-medium ${
+          className={`rounded-lg border px-3 py-2 text-[15px] font-medium ${
             value === scope
               ? "border-primary bg-primary text-white"
               : "border-line bg-surface text-muted-strong hover:border-line-strong hover:bg-surface-muted"
@@ -136,11 +136,11 @@ export function LeaderWorkspace({
                 { label: "Teachers", value: teacherCount, detail: "Assigned to these classes" },
               ].map((item) => (
                 <div key={item.label}>
-                  <p className="text-xs font-medium text-muted">{item.label}</p>
+                  <p className="text-[15px] font-medium text-muted">{item.label}</p>
                   <p className="mt-2 font-brand text-2xl font-semibold text-primary tabular-nums">
                     {item.value}
                   </p>
-                  <p className="mt-1 text-xs text-muted">{item.detail}</p>
+                  <p className="mt-1 text-[15px] text-muted">{item.detail}</p>
                 </div>
               ))}
             </div>
@@ -163,20 +163,20 @@ export function LeaderWorkspace({
                     aria-pressed={signal.id === selectedSignal?.id}
                     className={`w-full px-5 py-4 text-left ${
                       signal.id === selectedSignal?.id
-                        ? "bg-accent-soft/50"
+                        ? "bg-accent-soft"
                         : "hover:bg-surface-muted"
                     }`}
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <p className="text-sm font-semibold leading-snug text-primary">
+                      <p className="text-[15px] font-semibold leading-snug text-primary">
                         {signal.title}
                       </p>
                       <SignalBadge status={signal.status} />
                     </div>
-                    <p className="mt-2 text-xs text-muted">
+                    <p className="mt-2 text-[15px] text-muted">
                       {signal.subject} · {signal.klass}
                     </p>
-                    <p className="mt-1 text-xs text-muted">{signal.evidence}</p>
+                    <p className="mt-1 text-[15px] text-muted">{signal.evidence}</p>
                   </button>
                 ))}
               </div>
@@ -186,13 +186,13 @@ export function LeaderWorkspace({
               <Panel className="p-5 sm:p-6">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
-                    <p className="text-xs font-semibold text-accent-deep">
+                    <p className="text-[15px] font-semibold text-accent-deep">
                       Evidence trail
                     </p>
                     <h2 className="mt-1 font-brand text-lg font-semibold text-primary">
                       {selectedSignal.title}
                     </h2>
-                    <p className="mt-1 text-xs text-muted">
+                    <p className="mt-1 text-[15px] text-muted">
                       {selectedSignal.grade} · {selectedSignal.subject}
                     </p>
                   </div>
@@ -208,7 +208,7 @@ export function LeaderWorkspace({
                     View full report
                     <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
                   </Button>
-                  <p className="mt-2 text-xs text-muted">
+                  <p className="mt-2 text-[15px] text-muted">
                     Sample report · no live school data
                   </p>
                 </div>
@@ -230,90 +230,92 @@ export function LeaderWorkspace({
             <ScopeFilter value={scope} onChange={setScope} />
           </div>
 
-          <Panel className="mt-5 overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[760px] text-left text-sm">
-                <thead className="bg-surface-muted text-xs font-semibold text-muted">
-                  <tr>
-                    <th scope="col" className="px-5 py-3">Class</th>
-                    <th scope="col" className="px-5 py-3">Subject</th>
-                    <th scope="col" className="px-5 py-3">Teacher</th>
-                    <th scope="col" className="px-5 py-3">Students</th>
-                    <th scope="col" className="px-5 py-3">Progress</th>
-                    <th scope="col" className="px-5 py-3">Review</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-line">
-                  {scopedClasses.map((item) => (
-                    <tr key={item.code} className="hover:bg-surface-muted">
-                      <td className="px-5 py-4">
-                        <div className="flex items-center gap-3">
-                          <span className="flex size-8 items-center justify-center rounded-md bg-accent-soft text-xs font-semibold text-accent-deep">
-                            {item.code}
-                          </span>
-                          <span className="font-medium text-primary">
-                            {item.name}
-                          </span>
-                        </div>
-                      </td>
-                      <td className="px-5 py-4 text-muted">{item.subject}</td>
-                      <td className="px-5 py-4 text-muted">{item.teacher}</td>
-                      <td className="px-5 py-4 text-muted tabular-nums">
-                        {item.students}
-                      </td>
-                      <td className="px-5 py-4">
-                        <div className="flex items-center gap-2">
-                          <div
-                            className="h-1.5 w-16 overflow-hidden rounded-full bg-accent-soft"
-                            role="progressbar"
-                            aria-label={`${item.name} progress`}
-                            aria-valuenow={item.progress}
-                            aria-valuemin={0}
-                            aria-valuemax={100}
-                          >
-                            <div
-                              className="h-full rounded-full bg-accent"
-                              style={{ width: `${item.progress}%` }}
-                            />
-                          </div>
-                          <span className="text-xs text-muted tabular-nums">
-                            {item.progress}%
-                          </span>
-                        </div>
-                      </td>
-                      <td className="px-5 py-4">
-                        <button
-                          type="button"
-                          onClick={() => setSelectedClassCode(item.code)}
-                          aria-pressed={item.code === selectedClass?.code}
-                          className="inline-flex items-center gap-1 text-xs font-semibold text-accent-deep hover:underline"
-                        >
-                          {item.review}
-                          <ArrowRight size={13} strokeWidth={1.8} aria-hidden="true" />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Panel>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            {scopedClasses.map((item) => {
+              const selected = item.code === selectedClass?.code;
+              return (
+                <button
+                  key={item.code}
+                  type="button"
+                  onClick={() => setSelectedClassCode(item.code)}
+                  aria-pressed={selected}
+                  className={`rounded-xl border p-5 text-left transition-colors ${
+                    selected
+                      ? "border-accent bg-accent-soft"
+                      : "border-line bg-surface hover:border-line-strong hover:bg-surface-muted"
+                  }`}
+                >
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-surface text-[15px] font-semibold text-accent-deep">
+                        {item.code}
+                      </span>
+                      <div>
+                        <h2 className="font-brand text-[17px] font-semibold text-primary">
+                          {item.name}
+                        </h2>
+                        <p className="mt-1 text-[15px] text-muted">
+                          {item.subject} · {item.teacher}
+                        </p>
+                      </div>
+                    </div>
+                    <span className="rounded-md bg-surface px-2.5 py-1 text-[15px] font-medium text-muted-strong tabular-nums">
+                      {item.students} students
+                    </span>
+                  </div>
+
+                  <div className="mt-5 border-t border-line/70 pt-4">
+                    <div className="flex items-center justify-between gap-3 text-[15px]">
+                      <span className="text-muted">Progress</span>
+                      <span className="font-semibold text-primary tabular-nums">
+                        {item.progress}%
+                      </span>
+                    </div>
+                    <div
+                      className="mt-2 h-1.5 overflow-hidden rounded-full bg-surface"
+                      role="progressbar"
+                      aria-label={`${item.name} progress`}
+                      aria-valuenow={item.progress}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    >
+                      <div
+                        className="h-full rounded-full bg-accent"
+                        style={{ width: `${item.progress}%` }}
+                      />
+                    </div>
+                    <div className="mt-4 flex items-center justify-between gap-3 text-[15px]">
+                      <span className="font-medium text-accent-deep">
+                        {item.review}
+                      </span>
+                      <ArrowRight
+                        size={15}
+                        strokeWidth={1.8}
+                        className="text-accent-deep"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
 
           {selectedClass && (
             <Panel className="mt-5 flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-start gap-3">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-accent-soft text-accent-deep">
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent-deep">
                   <Users size={17} strokeWidth={1.8} aria-hidden="true" />
                 </span>
                 <div>
                   <h2 className="font-brand text-base font-semibold text-primary">
                     {selectedClass.name}
                   </h2>
-                  <p className="mt-1 text-xs text-muted">
+                  <p className="mt-1 text-[15px] text-muted">
                     {selectedClass.teacher} · {selectedClass.students} students ·{" "}
                     {selectedClass.progress}% progress
                   </p>
-                  <p className="mt-1 text-xs text-muted">
+                  <p className="mt-1 text-[15px] text-muted">
                     Review state: {selectedClass.review}
                   </p>
                 </div>
@@ -350,17 +352,17 @@ export function LeaderWorkspace({
                     aria-pressed={signal.id === selectedSignal?.id}
                     className={`w-full px-5 py-4 text-left ${
                       signal.id === selectedSignal?.id
-                        ? "bg-accent-soft/50"
+                        ? "bg-accent-soft"
                         : "hover:bg-surface-muted"
                     }`}
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <p className="text-sm font-semibold leading-snug text-primary">
+                      <p className="text-[15px] font-semibold leading-snug text-primary">
                         {signal.title}
                       </p>
                       <SignalBadge status={signal.status} />
                     </div>
-                    <p className="mt-2 text-xs text-muted">
+                    <p className="mt-2 text-[15px] text-muted">
                       {signal.grade} · {signal.subject}
                     </p>
                   </button>
@@ -372,13 +374,13 @@ export function LeaderWorkspace({
               <Panel className="p-5 sm:p-6">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
-                    <p className="text-xs font-semibold text-accent-deep">
+                    <p className="text-[15px] font-semibold text-accent-deep">
                       Sample report
                     </p>
                     <h2 className="mt-1 font-brand text-lg font-semibold text-primary">
                       {selectedSignal.title}
                     </h2>
-                    <p className="mt-1 text-xs text-muted">
+                    <p className="mt-1 text-[15px] text-muted">
                       Owner: {selectedSignal.owner}
                     </p>
                   </div>
@@ -390,7 +392,7 @@ export function LeaderWorkspace({
                 </div>
 
                 <div className="mt-6 grid gap-3 border-t border-line pt-5 sm:grid-cols-2">
-                  <div className="flex items-start gap-2.5 rounded-md border border-line bg-surface-muted p-3">
+                  <div className="flex items-start gap-2.5 rounded-lg border border-line bg-surface-muted p-3">
                     <BookOpen
                       size={15}
                       strokeWidth={1.8}
@@ -398,13 +400,13 @@ export function LeaderWorkspace({
                       aria-hidden="true"
                     />
                     <div>
-                      <p className="text-xs font-semibold text-primary">Source</p>
-                      <p className="mt-1 text-xs leading-relaxed text-muted text-pretty">
+                      <p className="text-[15px] font-semibold text-primary">Source</p>
+                      <p className="mt-1 text-[15px] leading-relaxed text-muted text-pretty">
                         {selectedSignal.source}
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-2.5 rounded-md border border-line bg-surface-muted p-3">
+                  <div className="flex items-start gap-2.5 rounded-lg border border-line bg-surface-muted p-3">
                     <CheckCircle2
                       size={15}
                       strokeWidth={1.8}
@@ -412,8 +414,8 @@ export function LeaderWorkspace({
                       aria-hidden="true"
                     />
                     <div>
-                      <p className="text-xs font-semibold text-primary">Decision</p>
-                      <p className="mt-1 text-xs leading-relaxed text-muted text-pretty">
+                      <p className="text-[15px] font-semibold text-primary">Decision</p>
+                      <p className="mt-1 text-[15px] leading-relaxed text-muted text-pretty">
                         {selectedSignal.decision}
                       </p>
                     </div>
@@ -438,10 +440,10 @@ export function LeaderWorkspace({
               aria-hidden="true"
             />
             <div>
-              <h2 className="font-brand text-sm font-semibold text-primary">
+              <h2 className="font-brand text-[15px] font-semibold text-primary">
                 What these reports are
               </h2>
-              <p className="mt-1 text-xs leading-relaxed text-muted text-pretty">
+              <p className="mt-1 text-[15px] leading-relaxed text-muted text-pretty">
                 They are sample product views showing how a school signal could be traced back to evidence. No report here is generated from live school data.
               </p>
             </div>

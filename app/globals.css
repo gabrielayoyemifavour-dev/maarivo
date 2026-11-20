@@ -49,29 +49,27 @@
 }
 
 :root {
-  --canvas: #f3efe6;
-  --background: #f7f3ea;
-  --foreground: #1a211d;
-  --primary: #1a211d;
-  --primary-raised: #2b352e;
-  --accent: #705ad4;
-  --accent-deep: #503da0;
-  --accent-soft: #ece7f8;
-  --surface: #fffcf5;
-  --surface-muted: #f1ecdf;
-  --ink-soft: #3c433d;
-  --success: #21664d;
-  --success-soft: #e4f0e8;
-  --warning: #8e581e;
-  --warning-soft: #f6e9d5;
-  --danger: #9f3d3a;
-  --danger-soft: #f7e5e2;
-  --ochre: #9b4f20;
-  --ochre-soft: #f7e9d7;
-  --muted: #665f55;
-  --muted-strong: #4b453c;
-  --line: #ded7c8;
-  --line-strong: #c8bfae;
+  --canvas: #f5f6f8;
+  --background: #ffffff;
+  --foreground: #111318;
+  --primary: #111318;
+  --primary-raised: #262b36;
+  --accent: #5b3df5;
+  --accent-deep: #4326c4;
+  --accent-soft: #efecfd;
+  --surface: #ffffff;
+  --surface-muted: #f0f2f6;
+  --ink-soft: #333a46;
+  --success: #16704f;
+  --success-soft: #e6f4ed;
+  --warning: #8a5a13;
+  --warning-soft: #fdf2dd;
+  --danger: #b02f35;
+  --danger-soft: #fdeaea;
+  --muted: #5b6472;
+  --muted-strong: #3d4552;
+  --line: #e3e6eb;
+  --line-strong: #cbd1da;
 }
 
 @theme inline {
@@ -92,8 +90,6 @@
   --color-warning-soft: var(--warning-soft);
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
-  --color-ochre: var(--ochre);
-  --color-ochre-soft: var(--ochre-soft);
   --color-muted: var(--muted);
   --color-muted-strong: var(--muted-strong);
   --color-line: var(--line);
@@ -109,13 +105,14 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 92px;
+    scroll-padding-top: 100px;
   }
 
   body {
     background: var(--canvas);
     color: var(--foreground);
     font-family: var(--font-sans);
+    font-size: 1rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -125,8 +122,8 @@
   h3,
   h4 {
     font-family: var(--font-brand);
-    letter-spacing: -0.035em;
-    line-height: 1.08;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
     text-wrap: balance;
   }
 
@@ -135,7 +132,7 @@
   }
 
   ::selection {
-    background: #d9d1ef;
+    background: #d9d2fd;
     color: var(--primary);
   }
 
@@ -151,10 +148,9 @@
 }
 
 @utility label-caps {
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  line-height: 1.5;
 }
 
 @media (prefers-reduced-motion: reduce) {

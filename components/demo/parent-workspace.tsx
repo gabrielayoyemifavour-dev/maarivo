@@ -134,14 +134,14 @@ export function ParentWorkspace({
             <Panel className="p-5 sm:p-6">
               <div className="flex flex-wrap items-start justify-between gap-3 border-b border-line pb-5">
                 <div className="flex items-start gap-3">
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-sm font-semibold text-accent-deep">
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-[15px] font-semibold text-accent-deep">
                     IO
                   </span>
                   <div>
                     <h2 className="font-brand text-lg font-semibold text-primary">
                       Ife Okafor
                     </h2>
-                    <p className="mt-1 text-xs text-muted">
+                    <p className="mt-1 text-[15px] text-muted">
                       Grade 9 · Demo school
                     </p>
                   </div>
@@ -164,12 +164,12 @@ export function ParentWorkspace({
                     className="w-full py-4 text-left first:pt-0 hover:bg-surface-muted"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <p className="text-sm font-semibold text-primary">
+                      <p className="text-[15px] font-semibold text-primary">
                         {item.title}
                       </p>
-                      <span className="text-xs text-muted">{item.date}</span>
+                      <span className="text-[15px] text-muted">{item.date}</span>
                     </div>
-                    <p className="mt-1 text-xs text-muted">
+                    <p className="mt-1 text-[15px] text-muted">
                       {item.subject} · {item.teacher}
                     </p>
                   </button>
@@ -190,11 +190,11 @@ export function ParentWorkspace({
                     Upcoming assessment
                   </h2>
                 </div>
-                <div className="mt-4 rounded-md border border-line bg-surface-muted p-4">
-                  <p className="text-sm font-semibold text-primary">
+                <div className="mt-4 rounded-lg border border-line bg-surface-muted p-4">
+                  <p className="text-[15px] font-semibold text-primary">
                     {parentAssessments[0].title}
                   </p>
-                  <p className="mt-1 text-xs text-muted">
+                  <p className="mt-1 text-[15px] text-muted">
                     {parentAssessments[0].subject} · due{" "}
                     {parentAssessments[0].due}
                   </p>
@@ -205,7 +205,7 @@ export function ParentWorkspace({
                 <button
                   type="button"
                   onClick={() => onNavigate("upcoming")}
-                  className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-accent-deep hover:underline"
+                  className="mt-4 inline-flex items-center gap-1 text-[15px] font-semibold text-accent-deep hover:underline"
                 >
                   View all assessments
                   <ArrowRight size={13} strokeWidth={1.8} aria-hidden="true" />
@@ -221,10 +221,10 @@ export function ParentWorkspace({
                     aria-hidden="true"
                   />
                   <div>
-                    <h2 className="font-brand text-sm font-semibold text-primary">
+                    <h2 className="font-brand text-[15px] font-semibold text-primary">
                       Access boundary
                     </h2>
-                    <p className="mt-1 text-xs leading-relaxed text-muted text-pretty">
+                    <p className="mt-1 text-[15px] leading-relaxed text-muted text-pretty">
                       Parents see only information for children linked to their account, with the level of detail set by the school.
                     </p>
                   </div>
@@ -251,7 +251,7 @@ export function ParentWorkspace({
                   type="button"
                   onClick={() => setSubjectFilter(subject)}
                   aria-pressed={subjectFilter === subject}
-                  className={`rounded-md border px-3 py-2 text-xs font-medium ${
+                  className={`rounded-lg border px-3 py-2 text-[15px] font-medium ${
                     subjectFilter === subject
                       ? "border-primary bg-primary text-white"
                       : "border-line bg-surface text-muted-strong hover:border-line-strong hover:bg-surface-muted"
@@ -281,12 +281,12 @@ export function ParentWorkspace({
                       aria-pressed={item.id === selectedFeedback?.id}
                       className={`w-full px-5 py-4 text-left ${
                         item.id === selectedFeedback?.id
-                          ? "bg-accent-soft/50"
+                          ? "bg-accent-soft"
                           : "hover:bg-surface-muted"
                       }`}
                     >
                       <div className="flex items-start justify-between gap-3">
-                        <p className="text-sm font-semibold leading-snug text-primary">
+                        <p className="text-[15px] font-semibold leading-snug text-primary">
                           {item.title}
                         </p>
                         {seenIds.includes(item.id) && (
@@ -298,10 +298,10 @@ export function ParentWorkspace({
                           />
                         )}
                       </div>
-                      <p className="mt-2 text-xs text-muted">
+                      <p className="mt-2 text-[15px] text-muted">
                         {item.subject} · {item.teacher}
                       </p>
-                      <p className="mt-1 text-xs text-muted">{item.date}</p>
+                      <p className="mt-1 text-[15px] text-muted">{item.date}</p>
                     </button>
                   ))}
                 </div>
@@ -310,13 +310,13 @@ export function ParentWorkspace({
                   <div className="p-5 sm:p-6">
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       <div>
-                        <p className="text-xs font-semibold text-accent-deep">
+                        <p className="text-[15px] font-semibold text-accent-deep">
                           Feedback detail
                         </p>
                         <h2 className="mt-1 font-brand text-lg font-semibold text-primary">
                           {selectedFeedback.title}
                         </h2>
-                        <p className="mt-1 text-xs text-muted">
+                        <p className="mt-1 text-[15px] text-muted">
                           {selectedFeedback.teacher} · {selectedFeedback.date}
                         </p>
                       </div>
@@ -331,7 +331,7 @@ export function ParentWorkspace({
                       {feedbackSeen ? (
                         <div
                           role="status"
-                          className="flex items-start gap-2 rounded-md border border-success/25 bg-success-soft p-3 text-xs leading-relaxed text-success"
+                          className="flex items-start gap-2 rounded-lg border border-success/25 bg-success-soft p-3 text-[15px] leading-relaxed text-success"
                         >
                           <CheckCircle2
                             size={15}
@@ -347,7 +347,7 @@ export function ParentWorkspace({
                             <CheckCircle2 size={15} strokeWidth={1.9} aria-hidden="true" />
                             Mark as seen
                           </Button>
-                          <p className="mt-2 text-xs text-muted">
+                          <p className="mt-2 text-[15px] text-muted">
                             Demo action · changes this preview only.
                           </p>
                         </div>
@@ -380,17 +380,17 @@ export function ParentWorkspace({
                     aria-pressed={item.id === selectedAssessment?.id}
                     className={`w-full px-5 py-4 text-left ${
                       item.id === selectedAssessment?.id
-                        ? "bg-accent-soft/50"
+                        ? "bg-accent-soft"
                         : "hover:bg-surface-muted"
                     }`}
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <p className="text-sm font-semibold leading-snug text-primary">
+                      <p className="text-[15px] font-semibold leading-snug text-primary">
                         {item.title}
                       </p>
                       <AssessmentBadge status={item.status} />
                     </div>
-                    <p className="mt-2 text-xs text-muted">
+                    <p className="mt-2 text-[15px] text-muted">
                       {item.subject} · due {item.due}
                     </p>
                   </button>
@@ -401,13 +401,13 @@ export function ParentWorkspace({
                 <div className="p-5 sm:p-6">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
-                      <p className="text-xs font-semibold text-accent-deep">
+                      <p className="text-[15px] font-semibold text-accent-deep">
                         Assessment detail
                       </p>
                       <h2 className="mt-1 font-brand text-lg font-semibold text-primary">
                         {selectedAssessment.title}
                       </h2>
-                      <p className="mt-1 text-xs text-muted">
+                      <p className="mt-1 text-[15px] text-muted">
                         {selectedAssessment.subject} · due {selectedAssessment.due}
                       </p>
                     </div>
@@ -418,14 +418,14 @@ export function ParentWorkspace({
                     <AssessmentEvidence item={selectedAssessment} />
                   </div>
 
-                  <div className="mt-6 flex items-start gap-2.5 rounded-md border border-line bg-surface-muted p-3">
+                  <div className="mt-6 flex items-start gap-2.5 rounded-lg border border-line bg-surface-muted p-3">
                     <ClipboardList
                       size={15}
                       strokeWidth={1.8}
                       className="mt-0.5 shrink-0 text-accent-deep"
                       aria-hidden="true"
                     />
-                    <p className="text-xs leading-relaxed text-muted text-pretty">
+                    <p className="text-[15px] leading-relaxed text-muted text-pretty">
                       Assessment content and individual scores are not shown in this parent preview.
                     </p>
                   </div>

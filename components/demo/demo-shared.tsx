@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ArrowRight, Check, SearchX, type LucideIcon } from "lucide-react";
+import { Check, SearchX, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/primitives";
 import {
   needsReview,
@@ -19,13 +19,13 @@ export function ViewHeading({
   children?: ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-5 border-t border-line-strong pt-6 sm:flex-row sm:items-end sm:justify-between">
+    <div className="flex flex-col gap-5 border-b border-line pb-7 sm:flex-row sm:items-end sm:justify-between">
       <div className="min-w-0">
-        {eyebrow && <p className="label-caps text-ochre">{eyebrow}</p>}
-        <h1 className="mt-3 font-brand text-[30px] font-semibold leading-[1.08] tracking-[-0.04em] text-primary sm:text-[36px]">
+        {eyebrow && <p className="text-[15px] font-semibold text-accent-deep">{eyebrow}</p>}
+        <h1 className="mt-3 font-brand text-[32px] font-semibold leading-[1.12] text-primary sm:text-[38px]">
           {title}
         </h1>
-        <p className="mt-3 max-w-[640px] text-sm leading-[1.7] text-muted text-pretty">
+        <p className="mt-3 max-w-[680px] text-[16px] leading-[1.65] text-muted text-pretty">
           {description}
         </p>
       </div>
@@ -61,37 +61,37 @@ const nodeStyles: Record<EvidenceStepState, string> = {
 
 export function EvidenceSteps({ steps }: { steps: EvidenceStep[] }) {
   return (
-    <ol className="space-y-0">
+    <ol>
       {steps.map((step, index) => (
-        <li key={step.label} className="relative pb-5 pl-7 last:pb-0">
+        <li key={step.label} className="relative pb-6 pl-8 last:pb-0">
           {index < steps.length - 1 && (
             <span
-              className="absolute left-[5px] top-4 h-[calc(100%-8px)] w-px bg-line"
+              className="absolute left-[6px] top-5 h-[calc(100%-12px)] w-0.5 bg-line"
               aria-hidden="true"
             />
           )}
           <span
-            className={`absolute left-0 top-0.5 flex size-3 items-center justify-center rounded-full border ${nodeStyles[step.state]}`}
+            className={`absolute left-0 top-1 flex size-4 items-center justify-center rounded-full border ${nodeStyles[step.state]}`}
             aria-hidden="true"
           >
             {step.state === "done" ? (
-              <Check size={8} strokeWidth={3} />
+              <Check size={9} strokeWidth={3} />
             ) : (
-              <span className="size-1 rounded-full bg-current" />
+              <span className="size-1.5 rounded-full bg-current" />
             )}
           </span>
-          <div className="flex flex-wrap items-baseline gap-x-2">
-            <p className="text-xs font-semibold text-primary">{step.label}</p>
+          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <p className="text-[15px] font-semibold text-primary">{step.label}</p>
             {step.state === "current" && (
-              <span className="text-xs font-medium text-accent-deep">
+              <span className="text-[15px] font-medium text-accent-deep">
                 Needs decision
               </span>
             )}
             {step.state === "waiting" && (
-              <span className="text-xs text-muted">After review</span>
+              <span className="text-[15px] text-muted">After review</span>
             )}
           </div>
-          <p className="mt-1 text-xs leading-[1.6] text-muted text-pretty">
+          <p className="mt-1.5 text-[15px] leading-[1.6] text-muted text-pretty">
             {step.detail}
           </p>
         </li>
@@ -153,18 +153,22 @@ export function EmptyState({
 }) {
   return (
     <div className="px-6 py-16 text-center">
-      <Icon size={24} strokeWidth={1.6} className="mx-auto text-muted" aria-hidden="true" />
-      <p className="mt-3 font-brand text-base font-semibold text-primary">{title}</p>
-      <p className="mx-auto mt-1 max-w-[360px] text-sm leading-relaxed text-muted text-pretty">
+      <Icon
+        size={28}
+        strokeWidth={1.7}
+        className="mx-auto text-accent-deep"
+        aria-hidden="true"
+      />
+      <p className="mt-4 font-brand text-xl font-semibold text-primary">{title}</p>
+      <p className="mx-auto mt-2 max-w-[400px] text-[15px] leading-relaxed text-muted text-pretty">
         {description}
       </p>
       <button
         type="button"
         onClick={onAction}
-        className="mt-5 inline-flex items-center gap-1.5 rounded-md border border-line-strong bg-surface px-3 py-2 text-sm font-medium text-primary hover:border-primary/35 hover:bg-accent-soft/50"
+        className="mt-6 inline-flex items-center rounded-lg bg-primary px-4 py-2.5 text-[15px] font-medium text-white hover:bg-primary-raised"
       >
         {actionLabel}
-        <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
       </button>
     </div>
   );

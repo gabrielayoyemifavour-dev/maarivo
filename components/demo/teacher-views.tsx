@@ -79,7 +79,7 @@ export function OverviewView({
               <h2 className="font-brand text-lg font-semibold text-primary">
                 Review before release
               </h2>
-              <p className="mt-1 text-xs leading-relaxed text-muted text-pretty">
+              <p className="mt-1 text-[15px] leading-relaxed text-muted text-pretty">
                 AI drafts stay editable until you check the source, wording and outcome.
               </p>
             </div>
@@ -105,10 +105,10 @@ export function OverviewView({
                       : "border-line bg-surface hover:border-line-strong hover:bg-surface-muted"
                   }`}
                 >
-                  <span className="block truncate text-xs font-semibold text-primary">
+                  <span className="block truncate text-[15px] font-semibold text-primary">
                     {item.title}
                   </span>
-                  <span className="mt-0.5 block text-xs text-muted">
+                  <span className="mt-0.5 block text-[15px] text-muted">
                     {item.klass} · due {item.due}
                   </span>
                 </button>
@@ -120,13 +120,13 @@ export function OverviewView({
             <div className="mt-6 rounded-lg border border-line bg-surface-muted p-4 sm:p-5">
               <div className="flex flex-wrap items-start justify-between gap-3 border-b border-line pb-4">
                 <div>
-                  <p className="text-xs font-semibold text-accent-deep">
+                  <p className="text-[15px] font-semibold text-accent-deep">
                     Selected draft
                   </p>
                   <h3 className="mt-1 font-brand text-base font-semibold text-primary">
                     {active.title}
                   </h3>
-                  <p className="mt-1 text-xs text-muted">
+                  <p className="mt-1 text-[15px] text-muted">
                     {active.klass} · {active.submissions} submitted
                   </p>
                 </div>
@@ -140,7 +140,7 @@ export function OverviewView({
                   Open full review
                   <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
                 </Button>
-                <span className="text-xs text-muted">
+                <span className="text-[15px] text-muted">
                   Sample record · no live school data
                 </span>
               </div>
@@ -175,12 +175,12 @@ export function OverviewView({
                   key={item.label}
                   className="flex items-baseline justify-between gap-4 py-3"
                 >
-                  <dt className="text-xs text-muted">{item.label}</dt>
+                  <dt className="text-[15px] text-muted">{item.label}</dt>
                   <dd className="text-right">
                     <span className="font-brand text-lg font-semibold text-primary tabular-nums">
                       {item.value}
                     </span>
-                    <span className="mt-0.5 block text-xs text-muted">
+                    <span className="mt-0.5 block text-[15px] text-muted">
                       {item.note}
                     </span>
                   </dd>
@@ -197,7 +197,7 @@ export function OverviewView({
               <button
                 type="button"
                 onClick={() => onNavigate("insights")}
-                className="inline-flex items-center gap-1 text-xs font-semibold text-accent-deep hover:underline"
+                className="inline-flex items-center gap-1 text-[15px] font-semibold text-accent-deep hover:underline"
               >
                 All
                 <ArrowRight size={13} strokeWidth={1.8} aria-hidden="true" />
@@ -216,10 +216,10 @@ export function OverviewView({
                         aria-hidden="true"
                       />
                       <div className="min-w-0">
-                        <p className="text-xs font-semibold leading-snug text-primary">
+                        <p className="text-[15px] font-semibold leading-snug text-primary">
                           {insight.title}
                         </p>
-                        <p className="mt-1 text-xs text-muted">
+                        <p className="mt-1 text-[15px] text-muted">
                           {insight.evidence}
                         </p>
                       </div>
@@ -268,63 +268,62 @@ export function ClassesView({
               onChange={(event) => onSearchChange(event.target.value)}
               placeholder="Search classes"
               aria-label="Search classes"
-              className="w-full bg-transparent text-base text-primary outline-none placeholder:text-muted/80 sm:text-sm"
+              className="w-full bg-transparent text-base text-primary outline-none placeholder:text-muted/80 sm:text-[15px]"
             />
           </label>
-          <p className="text-xs text-muted">Sample class records</p>
+          <p className="text-[15px] text-muted">Sample class records</p>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[680px] text-left text-sm">
-            <thead className="bg-surface-muted text-xs font-semibold text-muted">
-              <tr>
-                <th scope="col" className="px-5 py-3">Class</th>
-                <th scope="col" className="px-5 py-3">Topic</th>
-                <th scope="col" className="px-5 py-3">Students</th>
-                <th scope="col" className="px-5 py-3">Progress</th>
-                <th scope="col" className="px-5 py-3">Next lesson</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-line">
-              {items.map((item) => (
-                <tr key={item.code} className="hover:bg-surface-muted">
-                  <td className="px-5 py-4">
-                    <div className="flex items-center gap-3">
-                      <span className="flex size-8 items-center justify-center rounded-md bg-accent-soft text-xs font-semibold text-accent-deep">
-                        {item.code}
-                      </span>
-                      <span className="font-medium text-primary">{item.name}</span>
-                    </div>
-                  </td>
-                  <td className="px-5 py-4 text-muted">{item.topic}</td>
-                  <td className="px-5 py-4 text-muted tabular-nums">
-                    {item.students}
-                  </td>
-                  <td className="px-5 py-4">
-                    <div className="flex items-center gap-2">
-                      <div
-                        className="h-1.5 w-20 overflow-hidden rounded-full bg-accent-soft"
-                        role="progressbar"
-                        aria-label={`${item.name} progress`}
-                        aria-valuenow={item.progress}
-                        aria-valuemin={0}
-                        aria-valuemax={100}
-                      >
-                        <div
-                          className="h-full rounded-full bg-accent"
-                          style={{ width: `${item.progress}%` }}
-                        />
-                      </div>
-                      <span className="text-xs text-muted tabular-nums">
-                        {item.progress}%
-                      </span>
-                    </div>
-                  </td>
-                  <td className="px-5 py-4 text-muted">{item.next}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="grid gap-3 p-5 sm:grid-cols-2">
+          {items.map((item) => (
+            <article
+              key={item.code}
+              className="rounded-lg border border-line bg-surface-muted p-4"
+            >
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-[15px] font-semibold text-accent-deep">
+                    {item.code}
+                  </span>
+                  <div>
+                    <h2 className="font-brand text-[17px] font-semibold text-primary">
+                      {item.name}
+                    </h2>
+                    <p className="mt-1 text-[15px] text-muted">{item.topic}</p>
+                  </div>
+                </div>
+                <span className="rounded-md bg-surface px-2.5 py-1 text-[15px] font-medium text-muted-strong tabular-nums">
+                  {item.students} students
+                </span>
+              </div>
+
+              <div className="mt-5 border-t border-line pt-4">
+                <div className="flex items-center justify-between gap-3 text-[15px]">
+                  <span className="text-muted">Progress</span>
+                  <span className="font-semibold text-primary tabular-nums">
+                    {item.progress}%
+                  </span>
+                </div>
+                <div
+                  className="mt-2 h-1.5 overflow-hidden rounded-full bg-accent-soft"
+                  role="progressbar"
+                  aria-label={`${item.name} progress`}
+                  aria-valuenow={item.progress}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                >
+                  <div
+                    className="h-full rounded-full bg-accent"
+                    style={{ width: `${item.progress}%` }}
+                  />
+                </div>
+                <p className="mt-4 text-[15px] text-muted">
+                  Next:{" "}
+                  <span className="font-medium text-ink-soft">{item.next}</span>
+                </p>
+              </div>
+            </article>
+          ))}
           {items.length === 0 && (
             <EmptyState
               title="No matching classes"
@@ -388,7 +387,7 @@ export function AssessmentsView({
               onChange={(event) => onSearchChange(event.target.value)}
               placeholder="Search assessments"
               aria-label="Search assessments"
-              className="w-full bg-transparent text-base text-primary outline-none placeholder:text-muted/80 sm:text-sm"
+              className="w-full bg-transparent text-base text-primary outline-none placeholder:text-muted/80 sm:text-[15px]"
             />
           </label>
           <div
@@ -402,7 +401,7 @@ export function AssessmentsView({
                 type="button"
                 onClick={() => onStatusFilterChange(status)}
                 aria-pressed={statusFilter === status}
-                className={`rounded-md border px-3 py-2 text-xs font-medium ${
+                className={`rounded-lg border px-3 py-2 text-[15px] font-medium ${
                   statusFilter === status
                     ? "border-primary bg-primary text-white"
                     : "border-line bg-surface text-muted-strong hover:border-line-strong hover:bg-surface-muted"
@@ -435,22 +434,22 @@ export function AssessmentsView({
                     aria-pressed={selected}
                     className={`w-full px-5 py-4 text-left ${
                       selected
-                        ? "bg-accent-soft/50"
+                        ? "bg-accent-soft"
                         : "hover:bg-surface-muted"
                     }`}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-semibold text-primary">
+                        <p className="truncate text-[15px] font-semibold text-primary">
                           {item.title}
                         </p>
-                        <p className="mt-1 truncate text-xs text-muted">
+                        <p className="mt-1 truncate text-[15px] text-muted">
                           {item.klass} · {item.type}
                         </p>
                       </div>
                       <StatusBadge status={item.status} />
                     </div>
-                    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted">
+                    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[15px] text-muted">
                       <span className="inline-flex items-center gap-1">
                         <CalendarDays size={12} strokeWidth={1.8} aria-hidden="true" />
                         Due {item.due}
@@ -469,13 +468,13 @@ export function AssessmentsView({
               <div className="p-5 sm:p-6">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
-                    <p className="text-xs font-semibold text-accent-deep">
+                    <p className="text-[15px] font-semibold text-accent-deep">
                       Evidence trail
                     </p>
                     <h2 className="mt-1 font-brand text-lg font-semibold text-primary">
                       {selectedAssessment.title}
                     </h2>
-                    <p className="mt-1 text-xs text-muted">
+                    <p className="mt-1 text-[15px] text-muted">
                       {selectedAssessment.klass} · {selectedAssessment.type}
                     </p>
                   </div>
@@ -491,7 +490,7 @@ export function AssessmentsView({
                     reviewed ? (
                       <div
                         role="status"
-                        className="flex items-start gap-2 rounded-md border border-success/25 bg-success-soft p-3 text-xs leading-relaxed text-success"
+                        className="flex items-start gap-2 rounded-lg border border-success/25 bg-success-soft p-3 text-[15px] leading-relaxed text-success"
                       >
                         <CheckCircle2
                           size={15}
@@ -510,13 +509,13 @@ export function AssessmentsView({
                           <Check size={15} strokeWidth={2} aria-hidden="true" />
                           Mark as reviewed
                         </Button>
-                        <p className="mt-2 text-xs text-muted">
+                        <p className="mt-2 text-[15px] text-muted">
                           Demo action · changes this preview only.
                         </p>
                       </div>
                     )
                   ) : (
-                    <p className="text-xs leading-relaxed text-muted text-pretty">
+                    <p className="text-[15px] leading-relaxed text-muted text-pretty">
                       This assessment was already approved. Its source, review and outcome are shown above.
                     </p>
                   )}
@@ -575,14 +574,14 @@ export function TutorView({
         <Panel className="flex h-[620px] flex-col overflow-hidden">
           <div className="flex items-center justify-between gap-3 border-b border-line px-5 py-3.5">
             <div className="flex min-w-0 items-center gap-2.5">
-              <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-accent-soft text-accent-deep">
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent-deep">
                 <Sparkles size={16} strokeWidth={1.8} aria-hidden="true" />
               </span>
               <div className="min-w-0">
-                <p className="truncate text-sm font-semibold text-primary">
+                <p className="truncate text-[15px] font-semibold text-primary">
                   {isStudent ? "Fractions practice" : "Mathematics help"}
                 </p>
-                <p className="truncate text-xs text-muted">
+                <p className="truncate text-[15px] text-muted">
                   {isStudent
                     ? "Grade 9 · Fractions and ratios"
                     : "Grade 8 · Fractions and ratios"}
@@ -609,27 +608,27 @@ export function TutorView({
               >
                 <div className={`max-w-[90%] ${message.role === "student" ? "" : "w-full"}`}>
                   {message.role === "student" ? (
-                    <div className="rounded-xl rounded-br-sm bg-primary px-4 py-3 text-sm leading-[1.6] text-white text-pretty">
+                    <div className="rounded-xl rounded-br-sm bg-primary px-4 py-3 text-[15px] leading-[1.6] text-white text-pretty">
                       {message.text}
                     </div>
                   ) : (
                     <div className="rounded-xl border border-line bg-surface-muted p-4">
                       <div className="flex flex-wrap items-center gap-2">
                         <BrandMark size={20} />
-                        <span className="font-brand text-xs font-semibold text-primary">
+                        <span className="font-brand text-[15px] font-semibold text-primary">
                           Maarivo
                         </span>
                         {message.mode && (
-                          <span className="text-xs text-muted">
+                          <span className="text-[15px] text-muted">
                             · {message.mode}
                           </span>
                         )}
                       </div>
-                      <p className="mt-3 text-sm leading-[1.7] text-ink-soft text-pretty">
+                      <p className="mt-3 text-[15px] leading-[1.7] text-ink-soft text-pretty">
                         {message.text}
                       </p>
                       {message.source && (
-                        <div className="mt-3 flex items-center gap-1.5 border-t border-line pt-3 text-xs text-muted">
+                        <div className="mt-3 flex items-center gap-1.5 border-t border-line pt-3 text-[15px] text-muted">
                           <BookOpen size={12} strokeWidth={1.8} aria-hidden="true" />
                           Source: {message.source}
                         </div>
@@ -640,7 +639,7 @@ export function TutorView({
               </div>
             ))}
             {sending && (
-              <div className="flex items-center gap-2 text-xs text-muted" role="status">
+              <div className="flex items-center gap-2 text-[15px] text-muted" role="status">
                 <Loader2 size={15} className="animate-spin" aria-hidden="true" />
                 Preparing a grounded response…
               </div>
@@ -660,7 +659,7 @@ export function TutorView({
                   type="button"
                   onClick={() => onModeChange(item)}
                   aria-pressed={mode === item}
-                  className={`rounded-md border px-2.5 py-1.5 text-xs font-medium ${
+                  className={`rounded-lg border px-2.5 py-1.5 text-[15px] font-medium ${
                     mode === item
                       ? "border-accent bg-accent-soft text-accent-deep"
                       : "border-line text-muted-strong hover:border-line-strong hover:bg-surface-muted"
@@ -677,7 +676,7 @@ export function TutorView({
                   value={draft}
                   onChange={(event) => onDraftChange(event.target.value)}
                   placeholder="Ask a question about this topic"
-                  className="w-full bg-transparent text-base text-primary outline-none placeholder:text-muted/80 sm:text-sm"
+                  className="w-full bg-transparent text-base text-primary outline-none placeholder:text-muted/80 sm:text-[15px]"
                 />
               </label>
               <button
@@ -706,7 +705,7 @@ export function TutorView({
               ].map((item) => (
                 <div
                   key={item}
-                  className="flex gap-2.5 text-xs leading-relaxed text-ink-soft text-pretty"
+                  className="flex gap-2.5 text-[15px] leading-relaxed text-ink-soft text-pretty"
                 >
                   <Check
                     size={14}
@@ -724,7 +723,7 @@ export function TutorView({
             <h2 className="font-brand text-base font-semibold text-primary">
               Attached material
             </h2>
-            <div className="mt-3 flex items-start gap-3 rounded-md border border-line bg-surface-muted p-3">
+            <div className="mt-3 flex items-start gap-3 rounded-lg border border-line bg-surface-muted p-3">
               <FileText
                 size={17}
                 strokeWidth={1.7}
@@ -732,15 +731,15 @@ export function TutorView({
                 aria-hidden="true"
               />
               <div>
-                <p className="text-xs font-medium text-primary">
+                <p className="text-[15px] font-medium text-primary">
                   Fractions and ratios
                 </p>
-                <p className="mt-0.5 text-xs text-muted">
+                <p className="mt-0.5 text-[15px] text-muted">
                   Unit 3 · teacher uploaded
                 </p>
               </div>
             </div>
-            <p className="mt-3 text-xs leading-relaxed text-muted text-pretty">
+            <p className="mt-3 text-[15px] leading-relaxed text-muted text-pretty">
               In the live product, answers are grounded in your uploaded resources and every conversation is linked to its sources.
             </p>
           </Panel>
@@ -753,10 +752,10 @@ export function TutorView({
               aria-hidden="true"
             />
             <div>
-              <h2 className="font-brand text-sm font-semibold text-primary">
+              <h2 className="font-brand text-[15px] font-semibold text-primary">
                 Assessment boundary
               </h2>
-              <p className="mt-1 text-xs leading-relaxed text-muted text-pretty">
+              <p className="mt-1 text-[15px] leading-relaxed text-muted text-pretty">
                 {isStudent
                   ? "Tutor help is unavailable during restricted assessments. Your teacher decides when it is enabled."
                   : "Tutor access is disabled during restricted exams. Teachers see the rule before release."}
@@ -764,7 +763,7 @@ export function TutorView({
               <button
                 type="button"
                 onClick={() => onNavigate(isStudent ? "practice" : "assessments")}
-                className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-accent-deep hover:underline"
+                className="mt-3 inline-flex items-center gap-1 text-[15px] font-semibold text-accent-deep hover:underline"
               >
                 {isStudent ? "Back to practice" : "View assessment queue"}
                 <ArrowRight size={13} strokeWidth={1.8} aria-hidden="true" />
@@ -809,11 +808,11 @@ export function InsightsView({ onNavigate }: NavigateProps) {
               key={item.label}
               className={index === 0 ? "" : "sm:pl-5"}
             >
-              <p className="text-xs font-medium text-muted">{item.label}</p>
+              <p className="text-[15px] font-medium text-muted">{item.label}</p>
               <p className="mt-2 font-brand text-2xl font-semibold text-primary tabular-nums">
                 {item.value}
               </p>
-              <p className="mt-1 text-xs text-muted">{item.detail}</p>
+              <p className="mt-1 text-[15px] text-muted">{item.detail}</p>
             </div>
           ))}
         </div>
@@ -825,14 +824,14 @@ export function InsightsView({ onNavigate }: NavigateProps) {
           return (
             <Panel key={insight.title} className="p-5 sm:p-6">
               <div className="flex items-start gap-3">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-accent-soft text-accent-deep">
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent-deep">
                   <Icon size={17} strokeWidth={1.8} aria-hidden="true" />
                 </span>
                 <div>
                   <h2 className="font-brand text-base font-semibold text-primary">
                     {insight.title}
                   </h2>
-                  <p className="mt-2 text-sm leading-[1.7] text-ink-soft text-pretty">
+                  <p className="mt-2 text-[15px] leading-[1.7] text-ink-soft text-pretty">
                     {insight.body}
                   </p>
                 </div>
@@ -844,14 +843,14 @@ export function InsightsView({ onNavigate }: NavigateProps) {
                     aria-hidden="true"
                   />
                   <div>
-                    <p className="text-xs font-medium text-muted">Evidence</p>
-                    <p className="text-xs text-primary">{insight.evidence}</p>
+                    <p className="text-[15px] font-medium text-muted">Evidence</p>
+                    <p className="text-[15px] text-primary">{insight.evidence}</p>
                   </div>
                 </div>
                 <button
                   type="button"
                   onClick={() => onNavigate(insight.view)}
-                  className="inline-flex items-center gap-1 text-xs font-semibold text-accent-deep hover:underline"
+                  className="inline-flex items-center gap-1 text-[15px] font-semibold text-accent-deep hover:underline"
                 >
                   {insight.action}
                   <ArrowRight size={13} strokeWidth={1.8} aria-hidden="true" />
@@ -867,7 +866,7 @@ export function InsightsView({ onNavigate }: NavigateProps) {
           <h2 className="font-brand text-base font-semibold text-primary">
             Want this built on your school&apos;s data?
           </h2>
-          <p className="mt-1 text-xs leading-relaxed text-muted text-pretty">
+          <p className="mt-1 text-[15px] leading-relaxed text-muted text-pretty">
             Talk to support about a version tailored to your curriculum and workflow.
           </p>
         </div>
