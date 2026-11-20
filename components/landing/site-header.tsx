@@ -9,8 +9,9 @@ import { supportHref } from "@/lib/site";
 
 const nav = [
   { label: "Platform", href: "#platform" },
+  { label: "Roles", href: "#audience" },
   { label: "How it works", href: "#workflow" },
-  { label: "Who it's for", href: "#audience" },
+  { label: "Trust", href: "#trust" },
   { label: "Demo", href: "/demo" },
 ];
 
@@ -31,7 +32,7 @@ export function SiteHeader() {
       <div className="shell flex h-[72px] items-center justify-between gap-6">
         <Brand />
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
           {nav.map((item) => (
             <Link
               key={item.label}
@@ -59,6 +60,7 @@ export function SiteHeader() {
           className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line bg-surface text-primary lg:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          aria-controls="mobile-navigation"
           onClick={() => setOpen((value) => !value)}
         >
           {open ? <X size={19} /> : <Menu size={19} />}
@@ -67,7 +69,11 @@ export function SiteHeader() {
 
       {open && (
         <div className="border-t border-line bg-surface lg:hidden">
-          <nav className="shell flex flex-col py-3" aria-label="Mobile navigation">
+          <nav
+            id="mobile-navigation"
+            className="shell flex flex-col py-3"
+            aria-label="Mobile navigation"
+          >
             {nav.map((item) => (
               <Link
                 key={item.label}

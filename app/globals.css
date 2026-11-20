@@ -95,6 +95,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 88px;
   }
 
   body {
@@ -128,11 +129,6 @@
 @utility shell {
   width: min(100% - 2.5rem, 1200px);
   margin-inline: auto;
-}
-
-@utility text-balance-tight {
-  text-wrap: balance;
-  letter-spacing: -0.02em;
 }
 
 @media (prefers-reduced-motion: reduce) {

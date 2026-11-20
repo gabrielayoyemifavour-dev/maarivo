@@ -247,7 +247,7 @@ export function DemoDashboard() {
   };
 
   return (
-    <div className="flex min-h-screen bg-background">
+    <div id="main" tabIndex={-1} className="flex min-h-screen bg-background">
       {mobileNavOpen && (
         <button
           type="button"
