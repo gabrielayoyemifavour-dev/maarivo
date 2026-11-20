@@ -19,15 +19,13 @@ export function ViewHeading({
   children?: ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+    <div className="flex flex-col gap-5 border-t border-line-strong pt-6 sm:flex-row sm:items-end sm:justify-between">
       <div className="min-w-0">
-        {eyebrow && (
-          <p className="text-xs font-semibold text-accent-deep">{eyebrow}</p>
-        )}
-        <h1 className="mt-2 font-brand text-[28px] font-semibold leading-[1.2] text-primary sm:text-[32px]">
+        {eyebrow && <p className="label-caps text-ochre">{eyebrow}</p>}
+        <h1 className="mt-3 font-brand text-[30px] font-semibold leading-[1.08] tracking-[-0.04em] text-primary sm:text-[36px]">
           {title}
         </h1>
-        <p className="mt-2 max-w-[640px] text-sm leading-[1.65] text-muted text-pretty">
+        <p className="mt-3 max-w-[640px] text-sm leading-[1.7] text-muted text-pretty">
           {description}
         </p>
       </div>
@@ -47,47 +45,21 @@ export function StatusBadge({ status }: { status: AssessmentStatus }) {
   return <Badge variant={variant}>{status}</Badge>;
 }
 
-export function EvidenceTrail({
-  item,
-  reviewed,
-}: {
-  item: Assessment;
-  reviewed: boolean;
-}) {
-  const approvedAlready = !needsReview(item);
-  const reviewComplete = reviewed || approvedAlready;
+export type EvidenceStepState = "done" | "current" | "waiting";
 
-  const steps = [
-    {
-      label: "Source",
-      detail: item.source,
-      state: "done" as const,
-    },
-    {
-      label: "AI draft",
-      detail: item.generated,
-      state: "done" as const,
-    },
-    {
-      label: "Teacher review",
-      detail: reviewed
-        ? "Reviewed in this preview · local state only"
-        : item.review,
-      state: reviewComplete ? ("done" as const) : ("current" as const),
-    },
-    {
-      label: "Outcome",
-      detail: item.outcome,
-      state: reviewComplete ? ("done" as const) : ("waiting" as const),
-    },
-  ];
+export type EvidenceStep = {
+  label: string;
+  detail: string;
+  state: EvidenceStepState;
+};
 
-  const nodeStyles = {
-    done: "border-accent-deep bg-accent-deep text-white",
-    current: "border-accent-deep bg-surface text-accent-deep",
-    waiting: "border-line-strong bg-surface text-muted",
-  };
+const nodeStyles: Record<EvidenceStepState, string> = {
+  done: "border-accent-deep bg-accent-deep text-white",
+  current: "border-accent-deep bg-surface text-accent-deep",
+  waiting: "border-line-strong bg-surface text-muted",
+};
 
+export function EvidenceSteps({ steps }: { steps: EvidenceStep[] }) {
   return (
     <ol className="space-y-0">
       {steps.map((step, index) => (
@@ -126,6 +98,44 @@ export function EvidenceTrail({
       ))}
     </ol>
   );
+}
+
+export function EvidenceTrail({
+  item,
+  reviewed,
+}: {
+  item: Assessment;
+  reviewed: boolean;
+}) {
+  const approvedAlready = !needsReview(item);
+  const reviewComplete = reviewed || approvedAlready;
+
+  const steps: EvidenceStep[] = [
+    {
+      label: "Source",
+      detail: item.source,
+      state: "done",
+    },
+    {
+      label: "AI draft",
+      detail: item.generated,
+      state: "done",
+    },
+    {
+      label: "Teacher review",
+      detail: reviewed
+        ? "Reviewed in this preview · local state only"
+        : item.review,
+      state: reviewComplete ? "done" : "current",
+    },
+    {
+      label: "Outcome",
+      detail: item.outcome,
+      state: reviewComplete ? "done" : "waiting",
+    },
+  ];
+
+  return <EvidenceSteps steps={steps} />;
 }
 
 export function EmptyState({

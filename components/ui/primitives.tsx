@@ -5,15 +5,15 @@ type Variant = "primary" | "accent" | "outline" | "ghost" | "light";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-lg font-medium whitespace-nowrap transition-[background-color,border-color,color,scale] duration-150 ease-out active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap transition-colors duration-150 ease-out active:translate-y-px disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
   primary: "bg-primary text-white hover:bg-primary-raised",
-  accent: "bg-accent text-primary hover:bg-[#A795EE]",
+  accent: "bg-accent text-white hover:bg-accent-deep",
   outline:
-    "border border-line-strong bg-surface text-primary hover:border-primary/35 hover:bg-accent-soft/50",
-  ghost: "text-primary hover:bg-accent-soft",
-  light: "bg-white text-primary hover:bg-accent-soft",
+    "border border-line-strong bg-surface/70 text-primary hover:border-primary/40 hover:bg-surface",
+  ghost: "text-primary hover:bg-surface-muted",
+  light: "bg-surface text-primary hover:bg-canvas",
 };
 
 const sizes: Record<Size, string> = {
@@ -82,11 +82,11 @@ export function Button({
 type BadgeVariant = "neutral" | "accent" | "success" | "warning" | "danger";
 
 const badgeStyles: Record<BadgeVariant, string> = {
-  neutral: "bg-[#F0EFF5] text-[#55546A]",
-  accent: "bg-accent-soft text-[#5B48A6]",
+  neutral: "bg-surface-muted text-muted-strong",
+  accent: "bg-accent-soft text-accent-deep",
   success: "bg-success-soft text-success",
-  warning: "bg-warning-soft text-[#956522]",
-  danger: "bg-[#FBECEC] text-danger",
+  warning: "bg-warning-soft text-warning",
+  danger: "bg-danger-soft text-danger",
 };
 
 export function Badge({
@@ -100,7 +100,7 @@ export function Badge({
 }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium whitespace-nowrap ${badgeStyles[variant]} ${className}`}
+      className={`inline-flex items-center gap-1.5 rounded-sm px-2 py-1 text-xs font-medium whitespace-nowrap ${badgeStyles[variant]} ${className}`}
     >
       {children}
     </span>
@@ -115,9 +115,7 @@ export function Panel({
   className?: string;
 }) {
   return (
-    <div
-      className={`rounded-xl border border-line bg-surface shadow-[0_1px_2px_rgba(23,27,53,0.03)] ${className}`}
-    >
+    <div className={`rounded-md border border-line bg-surface ${className}`}>
       {children}
     </div>
   );

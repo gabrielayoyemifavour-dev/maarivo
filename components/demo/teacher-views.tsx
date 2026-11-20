@@ -102,7 +102,7 @@ export function OverviewView({
                   className={`min-w-[190px] rounded-lg border px-3 py-2.5 text-left ${
                     selected
                       ? "border-accent-deep bg-accent-soft/60"
-                      : "border-line bg-surface hover:border-line-strong hover:bg-[#FBFAFE]"
+                      : "border-line bg-surface hover:border-line-strong hover:bg-surface-muted"
                   }`}
                 >
                   <span className="block truncate text-xs font-semibold text-primary">
@@ -117,7 +117,7 @@ export function OverviewView({
           </div>
 
           {active && (
-            <div className="mt-6 rounded-lg border border-line bg-[#FBFAFE] p-4 sm:p-5">
+            <div className="mt-6 rounded-lg border border-line bg-surface-muted p-4 sm:p-5">
               <div className="flex flex-wrap items-start justify-between gap-3 border-b border-line pb-4">
                 <div>
                   <p className="text-xs font-semibold text-accent-deep">
@@ -276,7 +276,7 @@ export function ClassesView({
 
         <div className="overflow-x-auto">
           <table className="w-full min-w-[680px] text-left text-sm">
-            <thead className="bg-[#FBFAFE] text-xs font-semibold text-muted">
+            <thead className="bg-surface-muted text-xs font-semibold text-muted">
               <tr>
                 <th scope="col" className="px-5 py-3">Class</th>
                 <th scope="col" className="px-5 py-3">Topic</th>
@@ -287,7 +287,7 @@ export function ClassesView({
             </thead>
             <tbody className="divide-y divide-line">
               {items.map((item) => (
-                <tr key={item.code} className="hover:bg-[#FBFAFE]">
+                <tr key={item.code} className="hover:bg-surface-muted">
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-3">
                       <span className="flex size-8 items-center justify-center rounded-md bg-accent-soft text-xs font-semibold text-accent-deep">
@@ -405,7 +405,7 @@ export function AssessmentsView({
                 className={`rounded-md border px-3 py-2 text-xs font-medium ${
                   statusFilter === status
                     ? "border-primary bg-primary text-white"
-                    : "border-line bg-surface text-[#4E4D63] hover:border-line-strong hover:bg-[#FBFAFE]"
+                    : "border-line bg-surface text-muted-strong hover:border-line-strong hover:bg-surface-muted"
                 }`}
               >
                 {status}
@@ -436,7 +436,7 @@ export function AssessmentsView({
                     className={`w-full px-5 py-4 text-left ${
                       selected
                         ? "bg-accent-soft/50"
-                        : "hover:bg-[#FBFAFE]"
+                        : "hover:bg-surface-muted"
                     }`}
                   >
                     <div className="flex items-start justify-between gap-3">
@@ -540,6 +540,7 @@ export function TutorView({
   sending,
   chatEndRef,
   onNavigate,
+  audience = "teacher",
 }: NavigateProps & {
   messages: ChatMessage[];
   mode: string;
@@ -549,13 +550,20 @@ export function TutorView({
   onSend: (event: FormEvent<HTMLFormElement>) => void;
   sending: boolean;
   chatEndRef: RefObject<HTMLDivElement | null>;
+  audience?: "teacher" | "student";
 }) {
+  const isStudent = audience === "student";
+
   return (
     <div className="mx-auto max-w-[1160px]">
       <ViewHeading
         eyebrow="Demo mode"
         title="AI Tutor"
-        description="Scripted responses for this prototype. Every answer shows the material it is grounded in."
+        description={
+          isStudent
+            ? "Ask about the task you are working on. Hints come first, and every answer shows its source."
+            : "Scripted responses for this prototype. Every answer shows the material it is grounded in."
+        }
       >
         <Badge variant="warning">
           <ShieldCheck size={12} strokeWidth={2} aria-hidden="true" />
@@ -572,10 +580,12 @@ export function TutorView({
               </span>
               <div className="min-w-0">
                 <p className="truncate text-sm font-semibold text-primary">
-                  Mathematics help
+                  {isStudent ? "Fractions practice" : "Mathematics help"}
                 </p>
                 <p className="truncate text-xs text-muted">
-                  Grade 8 · Fractions and ratios
+                  {isStudent
+                    ? "Grade 9 · Fractions and ratios"
+                    : "Grade 8 · Fractions and ratios"}
                 </p>
               </div>
             </div>
@@ -603,7 +613,7 @@ export function TutorView({
                       {message.text}
                     </div>
                   ) : (
-                    <div className="rounded-xl border border-line bg-[#FBFAFE] p-4">
+                    <div className="rounded-xl border border-line bg-surface-muted p-4">
                       <div className="flex flex-wrap items-center gap-2">
                         <BrandMark size={20} />
                         <span className="font-brand text-xs font-semibold text-primary">
@@ -615,7 +625,7 @@ export function TutorView({
                           </span>
                         )}
                       </div>
-                      <p className="mt-3 text-sm leading-[1.7] text-[#3D3C52] text-pretty">
+                      <p className="mt-3 text-sm leading-[1.7] text-ink-soft text-pretty">
                         {message.text}
                       </p>
                       {message.source && (
@@ -653,7 +663,7 @@ export function TutorView({
                   className={`rounded-md border px-2.5 py-1.5 text-xs font-medium ${
                     mode === item
                       ? "border-accent bg-accent-soft text-accent-deep"
-                      : "border-line text-[#55546A] hover:border-line-strong hover:bg-[#FBFAFE]"
+                      : "border-line text-muted-strong hover:border-line-strong hover:bg-surface-muted"
                   }`}
                 >
                   {item}
@@ -696,7 +706,7 @@ export function TutorView({
               ].map((item) => (
                 <div
                   key={item}
-                  className="flex gap-2.5 text-xs leading-relaxed text-[#3D3C52] text-pretty"
+                  className="flex gap-2.5 text-xs leading-relaxed text-ink-soft text-pretty"
                 >
                   <Check
                     size={14}
@@ -714,7 +724,7 @@ export function TutorView({
             <h2 className="font-brand text-base font-semibold text-primary">
               Attached material
             </h2>
-            <div className="mt-3 flex items-start gap-3 rounded-md border border-line bg-[#FBFAFE] p-3">
+            <div className="mt-3 flex items-start gap-3 rounded-md border border-line bg-surface-muted p-3">
               <FileText
                 size={17}
                 strokeWidth={1.7}
@@ -747,14 +757,16 @@ export function TutorView({
                 Assessment boundary
               </h2>
               <p className="mt-1 text-xs leading-relaxed text-muted text-pretty">
-                Tutor access is disabled during restricted exams. Teachers see the rule before release.
+                {isStudent
+                  ? "Tutor help is unavailable during restricted assessments. Your teacher decides when it is enabled."
+                  : "Tutor access is disabled during restricted exams. Teachers see the rule before release."}
               </p>
               <button
                 type="button"
-                onClick={() => onNavigate("assessments")}
+                onClick={() => onNavigate(isStudent ? "practice" : "assessments")}
                 className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-accent-deep hover:underline"
               >
-                View assessment queue
+                {isStudent ? "Back to practice" : "View assessment queue"}
                 <ArrowRight size={13} strokeWidth={1.8} aria-hidden="true" />
               </button>
             </div>
@@ -820,7 +832,7 @@ export function InsightsView({ onNavigate }: NavigateProps) {
                   <h2 className="font-brand text-base font-semibold text-primary">
                     {insight.title}
                   </h2>
-                  <p className="mt-2 text-sm leading-[1.7] text-[#3D3C52] text-pretty">
+                  <p className="mt-2 text-sm leading-[1.7] text-ink-soft text-pretty">
                     {insight.body}
                   </p>
                 </div>

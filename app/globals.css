@@ -49,25 +49,33 @@
 }
 
 :root {
-  --background: #f4f2fa;
-  --foreground: #171b35;
-  --primary: #171b35;
-  --primary-raised: #232849;
-  --accent: #9886e9;
-  --accent-deep: #6b54c2;
-  --accent-soft: #efebfc;
-  --surface: #ffffff;
-  --success: #1f7359;
-  --success-soft: #e8f5f0;
-  --warning: #d99b48;
-  --warning-soft: #fbf2e4;
-  --danger: #b4484b;
-  --muted: #66657b;
-  --line: #e3e0ed;
-  --line-strong: #d2cee2;
+  --canvas: #f3efe6;
+  --background: #f7f3ea;
+  --foreground: #1a211d;
+  --primary: #1a211d;
+  --primary-raised: #2b352e;
+  --accent: #705ad4;
+  --accent-deep: #503da0;
+  --accent-soft: #ece7f8;
+  --surface: #fffcf5;
+  --surface-muted: #f1ecdf;
+  --ink-soft: #3c433d;
+  --success: #21664d;
+  --success-soft: #e4f0e8;
+  --warning: #8e581e;
+  --warning-soft: #f6e9d5;
+  --danger: #9f3d3a;
+  --danger-soft: #f7e5e2;
+  --ochre: #9b4f20;
+  --ochre-soft: #f7e9d7;
+  --muted: #665f55;
+  --muted-strong: #4b453c;
+  --line: #ded7c8;
+  --line-strong: #c8bfae;
 }
 
 @theme inline {
+  --color-canvas: var(--canvas);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -76,12 +84,18 @@
   --color-accent-deep: var(--accent-deep);
   --color-accent-soft: var(--accent-soft);
   --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-ink-soft: var(--ink-soft);
   --color-success: var(--success);
   --color-success-soft: var(--success-soft);
   --color-warning: var(--warning);
   --color-warning-soft: var(--warning-soft);
   --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-ochre: var(--ochre);
+  --color-ochre-soft: var(--ochre-soft);
   --color-muted: var(--muted);
+  --color-muted-strong: var(--muted-strong);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --font-brand: "General Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -95,11 +109,11 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 88px;
+    scroll-padding-top: 92px;
   }
 
   body {
-    background: var(--background);
+    background: var(--canvas);
     color: var(--foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -111,17 +125,22 @@
   h3,
   h4 {
     font-family: var(--font-brand);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.035em;
+    line-height: 1.08;
     text-wrap: balance;
   }
 
+  p {
+    text-wrap: pretty;
+  }
+
   ::selection {
-    background: #dcd4fa;
+    background: #d9d1ef;
     color: var(--primary);
   }
 
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--accent-deep);
     outline-offset: 3px;
   }
 }
@@ -129,6 +148,13 @@
 @utility shell {
   width: min(100% - 2.5rem, 1200px);
   margin-inline: auto;
+}
+
+@utility label-caps {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 @media (prefers-reduced-motion: reduce) {

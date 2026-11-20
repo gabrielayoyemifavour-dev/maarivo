@@ -1,43 +1,48 @@
 # Design decisions
 
-## Visual concept: evidence-first learning workspace
+## Visual concept: an editorial learning record
 
-The PRD pins the palette and type, so the identity comes from how those tokens are used rather than from new colours. Maarivo 2.0 uses one organising idea across the public site and the teacher workspace prototype:
+The earlier site read like a generic AI SaaS page: soft cards, purple washes and stock-photo hero. The reset replaces that with a warmer, more documentary system. The organising idea is:
 
-> Every important view should answer: what material is this based on, what was generated, what did a human approve, and what changed as a result?
+> A learning record should be readable like a well-kept document: source, draft, review and outcome, each with a visible owner.
 
-This is a presentation and interaction principle derived from the PRD. It does not add a new module or claim new functionality.
+This is a presentation principle only. It adds no new product module or claim.
 
-- **Product is the proof:** the hero shows a real application surface in a sample state, not a stock classroom photo labelled as a workspace.
-- **Evidence spine:** a 1px connector with small nodes links source, draft, review and outcome in the hero and workflow. It carries meaning; it is not decorative.
-- **Accent discipline:** `#9886E9` is used for active states, progress, small marks and primary support CTAs against navy. It is never used as a large gradient wash.
-- **Typography:** General Sans for headings and wordmark, Inter for body/UI/data. Both are self-hosted in `public/fonts`. The General Sans italic face remains available but is not used in the 2.0 homepage.
-- **Scale and restraint:** 6–12px radii, hairline `#E3E0ED` borders, one very subtle shadow for raised product panels. No decorative illustrations, floating shapes, glows or gradients.
-- **Photography:** retained self-hosted Unsplash images are used sparingly as human context. The closing CTA keeps one classroom photo; the hero and role previews use product surfaces instead.
-- **Roles:** the landing page has a working role switcher with sample teacher, student, school leader and parent previews. It also states that the interactive demo currently shows only the teacher workspace.
+- **Palette:** warm paper canvas (`#f3efe6` / `#f7f3ea`), ink (`#1a211d`), off-white surfaces (`#fffcf5`) and hairline `#ded7c8` rules. Purple (`#705ad4`) is reserved for AI/provenance marks and active states; it is never a large gradient wash. Ochre (`#9b4f20`) marks section numbers and labels.
+- **Typography:** General Sans for headings and the wordmark, Inter for body/UI/data. Both are self-hosted in `public/fonts`. General Sans italic is used sparingly for emphasis in large statements, not for decoration.
+- **Layout:** numbered sections, full-width hairline dividers, two-column editorial spreads and product surfaces presented like examined documents rather than floating cards. Radii are small (4–8px) and shadows are minimal.
+- **Photography:** self-hosted Unsplash images supply human context only. The product surface is the centrepiece; classroom photos are framed as figures with captions, not as proof of features. Two new assets (`student-device.jpg`, `resource-shelf.jpg`) support the school section.
+- **Reference discipline:** ojuwa.com and synacad.com were studied for editorial pacing, real classroom imagery and role-specific storytelling. No copy, image or exact layout was copied. The 15 user-attached images were treated as reference only.
 
-## Teacher workspace: review desk
+## Public page
 
-The first application prototype avoids the standard metrics-dashboard layout. A teacher's primary job in the PRD is to check AI-generated material before students see it, so the workspace opens on that decision.
+- The hero pairs one typographic statement with a sample review packet and an evidence trail; it does not rely on a fabricated dashboard screenshot.
+- The workflow is a numbered record with small preview fragments for each step: material, draft, review, outcome.
+- The role switcher changes narrative, preview and CTA, and links directly into the matching demo workspace.
+- Trust principles are written as boundaries, not marketing claims: generated work stays editable, answers stay tied to sources, access follows relationships, exam rules are explicit.
+- The final CTA repeats the required path: reach out to customer support for a tailored version of the web app.
 
-- **Overview is a decision surface:** the main panel shows the selected draft, its source, what AI generated, what needs checking and what happens after approval. The evidence spine is the same 1px/nodes system used on the landing page.
-- **Assessments are a queue, not a card grid:** a selectable list sits beside a detail panel. The panel carries the full evidence trail and a "Mark as reviewed" action that only changes local preview state.
-- **Classes remain a register:** a table is the right shape for scanning assigned classes, topics, student counts and progress. It keeps a compact search and a clear empty-state action.
-- **Tutor stays grounded:** the chat keeps response modes, a scripted reply, a source line and an explicit demo badge. Inputs are 16px on mobile to prevent iOS zoom.
-- **Insights are evidence notes:** each observation states its evidence and links to the relevant view. No decorative chart was added.
-- **Support dialog uses the native `<dialog>` element:** this gives focus trapping and Escape handling from the browser instead of a hand-built modal. The mobile drawer also closes on Escape.
+## Demo architecture
+
+- One shell serves four isolated role workspaces. The role and view live in the query string (`/demo?role=<role>&view=<view>`) so the global `#main` skip link no longer conflicts with route state.
+- `useSyncExternalStore` reads the query string, with `popstate` and a custom event keeping back/forward and in-app navigation in sync. Changing role resets the previous workspace because each role workspace unmounts.
+- The sidebar is a working role switcher and navigation; the header has a compact switcher for quick changes. Both show the active role and current view.
+- Every workspace uses the same document language: numbered eyebrows, hairline rules, evidence trails and explicit sample-data footnotes. No role gets a decorative metrics dashboard.
+
+## Role-specific choices
+
+- **Teacher** opens on review decisions, not attendance or charts. The assessment queue is a selectable list beside a detail panel; "Mark as reviewed" is explicitly local only.
+- **Student** opens on the next task, with source and teacher note beside the work. Practice validates an answer only after a hint is available; the tutor is student-facing and grounded.
+- **Leader** opens on signals to review, with a grade scope applied consistently across overview, classes and reports. Each signal carries evidence, owner and next check.
+- **Parent** opens on a linked-child summary with an explicit access-boundary note. Feedback is guidance, not a grade, and "Mark as seen" is explicitly local only.
 
 ## Accessibility refinements
 
-Two derived tokens were darkened from the PRD's initial values to meet 4.5:1 contrast for small text:
-
-| Token | PRD initial | Used value | Reason |
-| --- | --- | --- | --- |
-| Success | `#278568` | `#1F7359` | 4.04:1 on success-soft background; now 5.13:1 |
-| Accent deep | derived from `#9886E9` | `#6B54C2` | 3.88:1 on canvas; now 5.15:1 |
-
-The accent itself is unchanged; only the text variant was adjusted. The 2.0 pages also add a skip link, ARIA-pressed role buttons, `aria-controls` on the public mobile menu, scroll padding for sticky-header anchors, a 12px metadata floor and 16px mobile inputs.
+- Small text is held at a 12px metadata floor; text inputs render at 16px on mobile to prevent iOS zoom.
+- The ochre label token was darkened from `#b7662f` to `#9b4f20` after Lighthouse found 3.59–4.13:1 on paper backgrounds. It now clears 4.5:1 on every surface used.
+- The public header uses `aria-controls` and Escape for its mobile menu. The demo drawer, role switchers, filter groups and native `<dialog>` all expose their state to assistive technology.
+- View changes are announced through a live region; skip links and focus-visible styles are present on both routes.
 
 ## Demo honesty
 
-The landing page and demo are presentation surfaces. Every product preview is explicitly labelled as sample data, and the hero note states that the demo tutor is scripted. No live school records, authentication, AI provider or tenant isolation are connected. The public footer no longer exposes internal reference-site process notes.
+The landing page and demo are presentation surfaces. Every product preview is labelled as sample data, the demo banner states that no live school records are connected, and the tutor is marked "Demo mode". No live school records, authentication, AI provider or tenant isolation are connected.

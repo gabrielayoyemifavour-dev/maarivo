@@ -31,7 +31,7 @@ export function TutorPreview() {
             Why do 1/2 and 1/3 need the same denominator before I add them?
           </div>
 
-          <div className="rounded-xl border border-line bg-[#FBFAFE] p-4 sm:p-5">
+          <div className="rounded-xl border border-line bg-surface-muted p-4 sm:p-5">
             <div className="mb-3 flex items-center gap-2">
               <BrandMark size={22} />
               <span className="font-brand text-[13px] font-semibold text-primary">Maarivo</span>
@@ -43,12 +43,12 @@ export function TutorPreview() {
                   <span className="mt-px flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-soft text-[11px] font-semibold text-accent-deep">
                     {index + 1}
                   </span>
-                  <span className="text-[13px] leading-[1.55] text-[#3D3C52]">{step}</span>
+                  <span className="text-[13px] leading-[1.55] text-ink-soft">{step}</span>
                 </li>
               ))}
             </ol>
             <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-line pt-3">
-              <span className="inline-flex items-center gap-1.5 rounded-md border border-line bg-white px-2 py-1 text-[11px] font-medium text-[#4E4D63]">
+              <span className="inline-flex items-center gap-1.5 rounded-md border border-line bg-white px-2 py-1 text-[11px] font-medium text-muted-strong">
                 <BookOpen size={12} strokeWidth={1.8} aria-hidden="true" />
                 Fractions and ratios · Unit 3
               </span>
@@ -63,7 +63,7 @@ export function TutorPreview() {
             {["Explain simply", "Give me a hint", "Test my understanding"].map((label) => (
               <span
                 key={label}
-                className="rounded-full border border-line px-3 py-1.5 text-[11px] font-medium text-[#55546A]"
+                className="rounded-full border border-line px-3 py-1.5 text-[11px] font-medium text-muted-strong"
               >
                 {label}
               </span>

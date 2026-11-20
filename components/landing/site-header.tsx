@@ -9,10 +9,9 @@ import { supportHref } from "@/lib/site";
 
 const nav = [
   { label: "Platform", href: "#platform" },
+  { label: "In schools", href: "#schools" },
   { label: "Roles", href: "#audience" },
-  { label: "How it works", href: "#workflow" },
   { label: "Trust", href: "#trust" },
-  { label: "Demo", href: "/demo" },
 ];
 
 export function SiteHeader() {
@@ -28,36 +27,42 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line/80 bg-background/90 backdrop-blur-md">
-      <div className="shell flex h-[72px] items-center justify-between gap-6">
+    <header className="sticky top-0 z-50 border-b border-line bg-canvas/95">
+      <div className="shell flex h-[76px] items-center justify-between gap-6">
         <Brand />
 
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
+        <nav
+          className="hidden items-center gap-7 lg:flex"
+          aria-label="Main navigation"
+        >
           {nav.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="rounded-md text-sm font-medium text-[#4E4D63] transition-colors hover:text-primary"
+              className="rounded-sm text-sm font-medium text-muted-strong transition-colors hover:text-primary"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 lg:flex">
-          <Button href="/demo" variant="ghost" size="sm">
+        <div className="hidden items-center gap-4 lg:flex">
+          <Link
+            href="/demo"
+            className="inline-flex items-center gap-1.5 rounded-sm px-1 py-2 text-sm font-medium text-muted-strong hover:text-primary"
+          >
             Open demo
-          </Button>
+            <ArrowUpRight size={14} strokeWidth={1.9} aria-hidden="true" />
+          </Link>
           <Button href={supportHref} size="sm">
             <Mail size={15} strokeWidth={1.8} aria-hidden="true" />
             Get a tailored version
-            <ArrowUpRight size={15} strokeWidth={1.8} aria-hidden="true" />
           </Button>
         </div>
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line bg-surface text-primary lg:hidden"
+          className="inline-flex size-10 items-center justify-center rounded-md border border-line-strong bg-surface text-primary lg:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-navigation"
@@ -79,7 +84,7 @@ export function SiteHeader() {
                 key={item.label}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-3 text-sm font-medium text-primary hover:bg-accent-soft"
+                className="rounded-md px-3 py-3 text-sm font-medium text-primary hover:bg-surface-muted"
               >
                 {item.label}
               </Link>
@@ -87,6 +92,7 @@ export function SiteHeader() {
             <div className="mt-2 flex flex-col gap-2 border-t border-line pt-4">
               <Button href="/demo" variant="outline" size="md">
                 Open demo
+                <ArrowUpRight size={15} strokeWidth={1.9} aria-hidden="true" />
               </Button>
               <Button href={supportHref} size="md">
                 <Mail size={16} strokeWidth={1.8} aria-hidden="true" />
