@@ -1,21 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
   ArrowUpRight,
+  BadgeCheck,
   BarChart3,
-  BookOpen,
-  BrainCircuit,
   Check,
   ClipboardList,
-  GraduationCap,
-  Layers3,
   Mail,
-  School,
   ShieldCheck,
   Sparkles,
-  Target,
-  UserRound,
-  Users,
 } from "lucide-react";
 import { SiteHeader } from "@/components/landing/site-header";
 import { TutorPreview } from "@/components/landing/tutor-preview";
@@ -23,142 +17,53 @@ import { Brand } from "@/components/brand";
 import { Badge, Button } from "@/components/ui/primitives";
 import { site, supportHref } from "@/lib/site";
 
-const audiences = [
+const roles = [
   {
-    icon: GraduationCap,
-    title: "Students",
-    copy: "Get unstuck with explanations that build understanding, then practise until it sticks.",
+    label: "For teachers",
+    title: "Prepare once. Teach with room to respond.",
+    copy: "Turn your objectives and materials into a structured lesson, draft assessments with answer keys, then adjust every section before anything reaches a class.",
+    points: ["Lesson Studio", "Assessment Studio", "Question bank"],
+    image: "/images/teacher-planning.jpg",
+    alt: "A teacher planning a lesson with a laptop and notebook",
   },
   {
-    icon: UserRound,
-    title: "Teachers",
-    copy: "Keep control of lessons, questions and grades while AI handles the heavy preparation.",
+    label: "For students",
+    title: "Ask questions without being handed the answer.",
+    copy: "The tutor starts with hints, worked examples and checks for understanding — using the subject, topic and approved resources you already teach from.",
+    points: ["Step-by-step explanations", "Practice questions", "Conversation history"],
+    image: "/images/students-laptops.jpg",
+    alt: "Students studying together with laptops and notes",
   },
   {
-    icon: School,
-    title: "School leaders",
-    copy: "See patterns across classes and subjects, with evidence behind every recommendation.",
+    label: "For school leaders",
+    title: "See patterns, with the evidence behind them.",
+    copy: "Understand where topics are landing across classes, which students may need support, and what the recommendation is based on before you act on it.",
+    points: ["Class and subject analytics", "Learning gaps", "Evidence-based guidance"],
+    image: "/images/school-life.jpg",
+    alt: "Students and teachers in a school classroom",
   },
   {
-    icon: Users,
-    title: "Parents",
-    copy: "Stay informed about progress, feedback and upcoming assessments for your child.",
-  },
-];
-
-const capabilities = [
-  {
-    id: "lesson-studio",
-    icon: BookOpen,
-    label: "Lesson Studio",
-    title: "Plan the lesson, not the paperwork.",
-    copy: "Start with your objectives, class and available materials. Maarivo drafts a structured lesson you can edit section by section, then publish when it is ready.",
-    preview: (
-      <div className="space-y-2">
-        {["Learning objectives", "Introduction", "Lesson development", "Student activities", "Evaluation & homework"].map(
-          (item, index) => (
-            <div
-              key={item}
-              className="flex items-center justify-between rounded-lg border border-line bg-[#FBFAFE] px-3.5 py-2.5"
-            >
-              <span className="text-[13px] font-medium text-[#3D3C52]">{item}</span>
-              <span
-                className={`text-[11px] font-medium ${
-                  index < 3 ? "text-success" : "text-muted"
-                }`}
-              >
-                {index < 3 ? "Ready" : "Draft"}
-              </span>
-            </div>
-          ),
-        )}
-      </div>
-    ),
-  },
-  {
-    id: "assessment-studio",
-    icon: ClipboardList,
-    label: "Assessment Studio",
-    title: "Better questions, ready for your review.",
-    copy: "Generate assessments from topics, objectives and your own notes. Answer keys, marks and explanations come with them — nothing is published without your approval.",
-    preview: (
-      <div className="space-y-2">
-        {[
-          { type: "Multiple choice", marks: "2 marks", tone: "accent" as const },
-          { type: "Short answer", marks: "4 marks", tone: "neutral" as const },
-          { type: "Long answer", marks: "8 marks", tone: "neutral" as const },
-        ].map((item) => (
-          <div
-            key={item.type}
-            className="flex items-center justify-between rounded-lg border border-line bg-[#FBFAFE] px-3.5 py-2.5"
-          >
-            <span className="text-[13px] font-medium text-[#3D3C52]">{item.type}</span>
-            <Badge variant={item.tone}>{item.marks}</Badge>
-          </div>
-        ))}
-        <div className="flex items-center gap-2 pt-1 text-[11px] text-muted">
-          <ShieldCheck size={13} strokeWidth={1.8} aria-hidden="true" />
-          Teacher approval required before publication
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: "ai-tutor",
-    icon: BrainCircuit,
-    label: "AI Tutor",
-    title: "Guidance grounded in what you teach.",
-    copy: "Students ask in their own words. The tutor uses the subject, topic and your approved resources to offer hints, worked examples and checks for understanding.",
-    preview: (
-      <div className="flex flex-wrap gap-2">
-        {["Explain simply", "Step by step", "Give me an example", "Give me a hint", "Test my understanding"].map(
-          (mode) => (
-            <span
-              key={mode}
-              className="rounded-lg border border-line bg-[#FBFAFE] px-3 py-2 text-[12px] font-medium text-[#4E4D63]"
-            >
-              {mode}
-            </span>
-          ),
-        )}
-      </div>
-    ),
-  },
-  {
-    id: "learning-intelligence",
-    icon: BarChart3,
-    label: "Learning intelligence",
-    title: "Know what needs attention next.",
-    copy: "Performance data becomes clear, evidence-based guidance: topics to revisit, students who need support, and patterns worth a closer look.",
-    preview: (
-      <div className="rounded-lg border border-line bg-[#FBFAFE] p-4">
-        <div className="flex items-center justify-between">
-          <span className="text-[13px] font-semibold text-primary">Grade 9 Science</span>
-          <Badge variant="accent">Across 3 assessments</Badge>
-        </div>
-        <p className="mt-3 text-[13px] leading-relaxed text-[#3D3C52]">
-          14 students missed questions on chemical equations. A short revision session may help before the next assessment.
-        </p>
-      </div>
-    ),
+    label: "For parents",
+    title: "Stay informed within the right boundaries.",
+    copy: "See results, feedback and upcoming assessments for your own child only, with access tied to a verified link and enforced by permissions.",
+    points: ["Linked child profiles", "Teacher feedback", "Upcoming assessments"],
+    image: "/images/students-collaborating.jpg",
+    alt: "Students collaborating around a table during a learning session",
   },
 ];
 
 const workflow = [
   {
-    icon: Layers3,
     title: "Bring your materials",
-    copy: "Upload notes, documents and resources. We connect them to the right subject, class and topic.",
+    copy: "Upload notes, documents and resources. Maarivo connects them to the right subject, class and topic.",
   },
   {
-    icon: Sparkles,
     title: "Design the learning",
-    copy: "Draft lessons and assessments, adjust every section, and release only what you approve.",
+    copy: "Draft lessons and assessments, edit section by section, and release only what you approve.",
   },
   {
-    icon: Target,
     title: "See what changed",
-    copy: "Track understanding over time and act on recommendations backed by real performance data.",
+    copy: "Track understanding over time and act on guidance backed by real performance data.",
   },
 ];
 
@@ -168,20 +73,21 @@ export default function HomePage() {
       <SiteHeader />
       <main>
         {/* Hero */}
-        <section className="relative overflow-hidden pb-20 pt-16 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-24">
-          <div className="shell grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-12">
-            <div className="max-w-[620px]">
+        <section className="relative overflow-hidden border-b border-line bg-background">
+          <div className="shell grid gap-0 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)]">
+            <div className="py-16 sm:py-20 lg:py-24 lg:pr-12">
               <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-[#4E4D63]">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                 Built for secondary schools
               </span>
 
-              <h1 className="mt-6 font-brand text-[clamp(2.6rem,5.2vw,4.1rem)] font-semibold leading-[1.06] tracking-[-0.035em] text-primary">
-                Every learner understood. Every lesson connected.
+              <h1 className="mt-6 font-brand text-[clamp(2.7rem,5.4vw,4.2rem)] font-semibold leading-[1.05] tracking-[-0.035em] text-primary">
+                Learning that reaches{" "}
+                <em className="font-medium text-accent-deep">every student.</em>
               </h1>
 
-              <p className="mt-6 max-w-[540px] text-[17px] leading-[1.65] text-muted">
-                Maarivo brings lesson planning, assessment, AI tutoring and learning intelligence into one workspace built for the way schools actually teach.
+              <p className="mt-6 max-w-[520px] text-[17px] leading-[1.65] text-muted">
+                Maarivo connects lesson planning, assessment and AI tutoring to the way your school actually teaches. One workspace, built around the people in the classroom.
               </p>
 
               <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
@@ -196,11 +102,11 @@ export default function HomePage() {
                 </Button>
               </div>
 
-              <p className="mt-4 max-w-[520px] text-[13px] leading-relaxed text-muted">
+              <p className="mt-4 max-w-[500px] text-[13px] leading-relaxed text-muted">
                 Reach out to our customer support to get a tailored version of the web app for your curriculum, roles and workflow.
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-6 text-[13px] font-medium text-[#4E4D63]">
+              <div className="mt-9 flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-6 text-[13px] font-medium text-[#4E4D63]">
                 {["Teacher-controlled AI", "Grounded in your materials", "Privacy by design"].map(
                   (item) => (
                     <span key={item} className="inline-flex items-center gap-2">
@@ -212,100 +118,219 @@ export default function HomePage() {
               </div>
             </div>
 
-            <TutorPreview />
+            <div className="relative min-h-[380px] self-stretch lg:min-h-[620px]">
+              <Image
+                src="/images/hero-classroom.jpg"
+                alt="A teacher leading a classroom discussion"
+                fill
+                sizes="(max-width: 1024px) 100vw, 48vw"
+                className="object-cover object-[55%_center]"
+                loading="eager"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-primary/90 px-6 py-5 text-white">
+                <div className="flex items-center gap-2 text-[11px] font-medium text-white/60">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                  Sample teacher workspace
+                </div>
+                <p className="mt-1.5 font-brand text-[17px] font-semibold">
+                  Grade 9 Science · Lesson in progress
+                </p>
+                <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-[12px] text-white/75">
+                  <span>Concept mastery</span>
+                  <span>Reasoning signals</span>
+                  <span>Next step suggested</span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Audience */}
-        <section id="audience" className="border-y border-line bg-surface py-14 sm:py-16">
+        {/* Statement band */}
+        <section className="relative isolate overflow-hidden bg-primary">
+          <Image
+            src="/images/students-collaborating.jpg"
+            alt="Students collaborating around a laptop during a learning session"
+            fill
+            sizes="100vw"
+            className="object-cover opacity-25"
+          />
+          <div className="relative mx-auto max-w-[980px] px-6 py-20 text-center sm:py-24">
+            <p className="font-brand text-[clamp(1.6rem,3.2vw,2.5rem)] font-medium leading-[1.22] tracking-[-0.025em] text-white">
+              Tools should make thinking visible — not add another screen between a teacher and a student.
+            </p>
+            <div className="mt-6 flex items-center justify-center gap-2 text-[12px] font-medium text-white/65">
+              <ShieldCheck size={14} strokeWidth={1.8} aria-hidden="true" />
+              Human judgement stays in control
+            </div>
+          </div>
+        </section>
+
+        {/* Role stories */}
+        <section id="audience" className="bg-surface py-20 sm:py-24">
           <div className="shell">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <h2 className="max-w-[460px] text-[clamp(1.6rem,2.5vw,2rem)] font-semibold leading-[1.2] text-primary">
-                One platform, four connected experiences.
+            <div className="max-w-[640px]">
+              <span className="text-[13px] font-semibold text-accent-deep">Who it&apos;s for</span>
+              <h2 className="mt-3 text-[clamp(1.9rem,3.2vw,2.7rem)] font-semibold leading-[1.14] text-primary">
+                Four roles. One shared picture of learning.
               </h2>
-              <p className="max-w-[360px] text-sm leading-relaxed text-muted">
-                Shared academic data, role-appropriate access and workflows that stay in sync.
+              <p className="mt-4 text-[15px] leading-[1.7] text-muted">
+                Everyone works from connected academic data, with access shaped by their role and responsibilities.
               </p>
             </div>
-            <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {audiences.map((item) => (
-                <div key={item.title} className="border-t border-primary/25 pt-5">
-                  <item.icon size={22} strokeWidth={1.6} className="text-accent-deep" aria-hidden="true" />
-                  <h3 className="mt-4 text-[17px] font-semibold text-primary">{item.title}</h3>
-                  <p className="mt-2 text-[13px] leading-[1.6] text-muted">{item.copy}</p>
+
+            <div className="mt-12 space-y-14 sm:space-y-16">
+              {roles.map((role, index) => (
+                <div
+                  key={role.label}
+                  className="grid items-center gap-8 md:grid-cols-2 md:gap-12 lg:gap-16"
+                >
+                  <div className={index % 2 === 1 ? "md:order-2" : ""}>
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-accent-soft">
+                      <Image
+                        src={role.image}
+                        alt={role.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 45vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div className={index % 2 === 1 ? "md:order-1" : ""}>
+                    <span className="text-[12px] font-semibold text-accent-deep">
+                      {role.label}
+                    </span>
+                    <h3 className="mt-3 max-w-[480px] text-[clamp(1.5rem,2.4vw,2rem)] font-semibold leading-[1.22] text-primary">
+                      {role.title}
+                    </h3>
+                    <p className="mt-4 max-w-[470px] text-[14px] leading-[1.75] text-muted">
+                      {role.copy}
+                    </p>
+                    <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+                      {role.points.map((point) => (
+                        <span key={point} className="inline-flex items-center gap-2 text-[13px] font-medium text-[#4E4D63]">
+                          <Check size={14} strokeWidth={2.2} className="text-success" aria-hidden="true" />
+                          {point}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Capabilities */}
+        {/* Inside the workspace */}
         <section id="platform" className="py-20 sm:py-24">
-          <div className="shell grid gap-12 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:gap-16">
-            <div className="lg:sticky lg:top-28 lg:self-start">
-              <span className="text-[13px] font-semibold text-accent-deep">The platform</span>
-              <h2 className="mt-3 max-w-[420px] text-[clamp(1.9rem,3.1vw,2.6rem)] font-semibold leading-[1.14] text-primary">
-                Built around the work that matters.
-              </h2>
-              <p className="mt-5 max-w-[400px] text-[15px] leading-[1.7] text-muted">
-                AI is part of the learning workflow here — prepared, checked and always subject to human judgement.
+          <div className="shell">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div className="max-w-[640px]">
+                <span className="text-[13px] font-semibold text-accent-deep">Inside the workspace</span>
+                <h2 className="mt-3 text-[clamp(1.9rem,3.2vw,2.7rem)] font-semibold leading-[1.14] text-primary">
+                  AI that stays inside the learning workflow.
+                </h2>
+              </div>
+              <p className="max-w-[340px] text-[14px] leading-[1.7] text-muted">
+                Prepared, validated and always subject to human judgement.
               </p>
-              <Button href={supportHref} variant="outline" className="mt-7">
-                Discuss your setup
-                <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" />
-              </Button>
             </div>
 
-            <div className="space-y-4">
-              {capabilities.map((capability) => (
-                <div
-                  key={capability.id}
-                  className="grid gap-6 rounded-xl border border-line bg-surface p-6 sm:p-7 md:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] md:items-center"
-                >
-                  <div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-soft text-accent-deep">
-                        <capability.icon size={18} strokeWidth={1.7} aria-hidden="true" />
-                      </span>
-                      <span className="text-[13px] font-semibold text-accent-deep">
-                        {capability.label}
-                      </span>
-                    </div>
-                    <h3 className="mt-4 text-[19px] font-semibold leading-[1.3] text-primary">
-                      {capability.title}
-                    </h3>
-                    <p className="mt-2.5 text-[13px] leading-[1.7] text-muted">{capability.copy}</p>
-                  </div>
-                  <div>{capability.preview}</div>
+            <div className="mt-11 grid gap-5 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)]">
+              <div className="rounded-xl border border-line bg-surface p-6 sm:p-8">
+                <div className="flex items-center gap-2.5">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-soft text-accent-deep">
+                    <Sparkles size={18} strokeWidth={1.7} aria-hidden="true" />
+                  </span>
+                  <span className="text-[13px] font-semibold text-accent-deep">AI Tutor</span>
                 </div>
-              ))}
+                <h3 className="mt-4 text-[21px] font-semibold leading-snug text-primary">
+                  Guidance grounded in what you teach.
+                </h3>
+                <p className="mt-2 max-w-[560px] text-[13px] leading-[1.7] text-muted">
+                  Students ask in their own words. The tutor uses subject and topic context, offers hints before answers, and cites the approved material it drew from.
+                </p>
+                <div className="mt-6">
+                  <TutorPreview />
+                </div>
+              </div>
+
+              <div className="space-y-5">
+                <div className="rounded-xl border border-line bg-surface p-6">
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-soft text-accent-deep">
+                      <ClipboardList size={18} strokeWidth={1.7} aria-hidden="true" />
+                    </span>
+                    <span className="text-[13px] font-semibold text-accent-deep">Assessment Studio</span>
+                  </div>
+                  <h3 className="mt-4 text-[18px] font-semibold leading-snug text-primary">
+                    Questions ready for your review.
+                  </h3>
+                  <p className="mt-2 text-[13px] leading-[1.7] text-muted">
+                    Generate assessments with answer keys, marks and explanations. Nothing publishes without your approval.
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    <Badge variant="accent">Multiple choice</Badge>
+                    <Badge>Short answer</Badge>
+                    <Badge>Long answer</Badge>
+                  </div>
+                </div>
+
+                <div className="rounded-xl border border-line bg-surface p-6">
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-soft text-accent-deep">
+                      <BarChart3 size={18} strokeWidth={1.7} aria-hidden="true" />
+                    </span>
+                    <span className="text-[13px] font-semibold text-accent-deep">Learning intelligence</span>
+                  </div>
+                  <h3 className="mt-4 text-[18px] font-semibold leading-snug text-primary">
+                    Know what needs attention next.
+                  </h3>
+                  <p className="mt-2 text-[13px] leading-[1.7] text-muted">
+                    Recommendations come with their evidence, so you can see why a topic or student was flagged.
+                  </p>
+                  <div className="mt-5 flex items-center gap-2 rounded-lg border border-line bg-[#FBFAFE] px-3.5 py-3 text-[12px] text-[#3D3C52]">
+                    <BadgeCheck size={15} strokeWidth={1.9} className="text-success" aria-hidden="true" />
+                    Based on 3 assessments · sample view
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Workflow */}
         <section id="workflow" className="border-y border-line bg-surface py-20 sm:py-24">
-          <div className="shell">
-            <div className="max-w-[620px]">
+          <div className="shell grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:items-center lg:gap-16">
+            <div>
               <span className="text-[13px] font-semibold text-accent-deep">How it works</span>
-              <h2 className="mt-3 text-[clamp(1.9rem,3.1vw,2.6rem)] font-semibold leading-[1.14] text-primary">
+              <h2 className="mt-3 max-w-[560px] text-[clamp(1.9rem,3.2vw,2.7rem)] font-semibold leading-[1.14] text-primary">
                 From your materials to measurable progress.
               </h2>
+              <div className="mt-10 space-y-7">
+                {workflow.map((step, index) => (
+                  <div key={step.title} className="flex gap-5 border-t border-line pt-5">
+                    <span className="font-brand text-[13px] font-semibold text-accent-deep tabular-nums">
+                      0{index + 1}
+                    </span>
+                    <div>
+                      <h3 className="text-[17px] font-semibold text-primary">{step.title}</h3>
+                      <p className="mt-1.5 max-w-[460px] text-[13px] leading-[1.7] text-muted">{step.copy}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="relative mt-12 grid gap-8 md:grid-cols-3 md:gap-10">
-              <div className="absolute top-[21px] right-[16%] left-[16%] hidden h-px bg-line-strong md:block" />
-              {workflow.map((step, index) => (
-                <div key={step.title} className="relative">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-background text-accent-deep">
-                    <step.icon size={19} strokeWidth={1.7} aria-hidden="true" />
-                  </div>
-                  <div className="mt-5 text-[11px] font-semibold text-muted">
-                    Step {index + 1}
-                  </div>
-                  <h3 className="mt-1.5 text-[18px] font-semibold text-primary">{step.title}</h3>
-                  <p className="mt-2 max-w-[320px] text-[13px] leading-[1.7] text-muted">{step.copy}</p>
-                </div>
-              ))}
+            <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-accent-soft lg:aspect-[4/4.4]">
+              <Image
+                src="/images/study-notes.jpg"
+                alt="Books and study notes arranged on a desk"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-primary/90 px-5 py-4 text-[12px] font-medium text-white">
+                Your material stays the source of truth
+              </div>
             </div>
           </div>
         </section>
@@ -313,23 +338,20 @@ export default function HomePage() {
         {/* CTA */}
         <section className="py-20 sm:py-24">
           <div className="shell">
-            <div className="relative overflow-hidden rounded-2xl bg-primary px-7 py-12 sm:px-12 sm:py-14 lg:px-16">
-              <svg
-                className="pointer-events-none absolute -top-24 -right-16 h-80 w-80 text-white/[0.07]"
-                viewBox="0 0 320 320"
-                fill="none"
-                aria-hidden="true"
-              >
-                <circle cx="160" cy="160" r="120" stroke="currentColor" strokeWidth="1" />
-                <circle cx="160" cy="160" r="80" stroke="currentColor" strokeWidth="1" />
-                <circle cx="160" cy="160" r="40" stroke="currentColor" strokeWidth="1" />
-              </svg>
-              <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-center">
+            <div className="relative isolate overflow-hidden rounded-2xl bg-primary px-7 py-14 sm:px-12 sm:py-16 lg:px-16">
+              <Image
+                src="/images/teacher-students.jpg"
+                alt="A teacher working with students in a classroom"
+                fill
+                sizes="(max-width: 1024px) 100vw, 1100px"
+                className="object-cover opacity-20"
+              />
+              <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-center">
                 <div>
-                  <h2 className="max-w-[620px] text-[clamp(1.9rem,3.2vw,2.7rem)] font-semibold leading-[1.12] text-white">
+                  <h2 className="max-w-[600px] text-[clamp(1.9rem,3.2vw,2.7rem)] font-semibold leading-[1.12] text-white">
                     Let&apos;s shape Maarivo around your school.
                   </h2>
-                  <p className="mt-4 max-w-[560px] text-[15px] leading-[1.7] text-[#C5C3D9]">
+                  <p className="mt-4 max-w-[540px] text-[15px] leading-[1.7] text-white/75">
                     Reach out to our customer support to get a tailored version of the web app. Tell us about your curriculum, classes and workflow, and we&apos;ll take it from there.
                   </p>
                 </div>
@@ -356,7 +378,7 @@ export default function HomePage() {
         <div className="shell flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <Brand />
-            <p className="mt-3 max-w-[320px] text-[12px] leading-relaxed text-muted">
+            <p className="mt-3 max-w-[340px] text-[12px] leading-relaxed text-muted">
               An AI-powered learning and assessment workspace for schools.
             </p>
           </div>
@@ -367,7 +389,10 @@ export default function HomePage() {
           </div>
         </div>
         <div className="border-t border-line">
-          <div className="shell py-5 text-[12px] text-muted">© 2026 {site.name}. All rights reserved.</div>
+          <div className="shell flex flex-col gap-2 py-5 text-[12px] text-muted sm:flex-row sm:items-center sm:justify-between">
+            <span>© 2026 {site.name}. All rights reserved.</span>
+            <span>Photography from Unsplash. Reference layouts studied from Ojuwa and Synacad; no images copied from those sites.</span>
+          </div>
         </div>
       </footer>
     </>

@@ -6,9 +6,10 @@ The PRD pins the palette and type, so the identity comes from how those tokens a
 
 - **Canvas and chrome:** `#F4F2FA` canvas with white content surfaces and a persistent `#171B35` sidebar in the demo. This gives the product a calm, institutional feel without the generic white-sidebar/grey-canvas look.
 - **Accent discipline:** `#9886E9` is used for active states, progress, small marks and primary support CTAs against navy. It is never used as a large gradient wash.
-- **Typography:** General Sans for headings and wordmark, Inter for body/UI/data. Self-hosted in `public/fonts`, so rendering does not depend on a third-party CDN at runtime.
+- **Typography:** General Sans for headings and wordmark, Inter for body/UI/data. Both self-hosted in `public/fonts`. General Sans Italic (500) was added for a single editorial headline phrase, matching the italic treatment used by the reference sites without introducing a third typeface.
 - **Scale and restraint:** 6–12px radii, hairline `#E3E0ED` borders, one very subtle shadow for raised product panels. No decorative illustrations, floating shapes or glows.
-- **One memorable moment:** the hero's AI Tutor product window with a restrained learning-path line motif behind it; it demonstrates grounding and step-by-step reasoning rather than decorating the page.
+- **Photography:** seven self-hosted Unsplash classroom photos carry the human presence the earlier version lacked. They appear in the hero, a full-bleed statement band, alternating role stories, the workflow visual and the closing CTA. This is the main change that removes the templated feel: real classrooms, varied section widths and one editorial italic headline instead of a stack of identical cards.
+- **One memorable moment:** the photographic hero with a small, clearly labeled "sample teacher workspace" caption strip, grounding the product in a real classroom rather than an abstract illustration.
 
 ## Accessibility refinements
 

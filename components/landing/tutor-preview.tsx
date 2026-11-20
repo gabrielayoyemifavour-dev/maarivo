@@ -9,21 +9,8 @@ const steps = [
 
 export function TutorPreview() {
   return (
-    <div className="relative mx-auto w-full max-w-[560px]">
-      <svg
-        className="pointer-events-none absolute -top-14 -right-16 h-[420px] w-[520px] text-accent/20"
-        viewBox="0 0 520 420"
-        fill="none"
-        aria-hidden="true"
-      >
-        <path d="M30 340C110 340 110 230 190 230S270 300 350 300 430 170 500 170" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M30 390C120 390 120 300 210 300S300 120 390 120 460 70 500 70" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="190" cy="230" r="5" fill="currentColor" />
-        <circle cx="350" cy="300" r="5" fill="currentColor" />
-        <circle cx="390" cy="120" r="5" fill="currentColor" />
-      </svg>
-
-      <div className="relative overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_28px_70px_-36px_rgba(23,27,53,0.35)]">
+    <div className="w-full">
+      <div className="overflow-hidden rounded-xl border border-line bg-surface shadow-[0_24px_60px_-40px_rgba(23,27,53,0.3)]">
         <div className="flex h-[52px] items-center justify-between border-b border-line px-5">
           <div className="flex items-center gap-2.5">
             <span className="flex h-7 w-7 items-center justify-center rounded-md bg-accent-soft text-accent-deep">

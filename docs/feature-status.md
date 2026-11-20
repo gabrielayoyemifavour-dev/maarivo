@@ -9,7 +9,8 @@ Status legend: **Complete** · **Partial** · **Placeholder** · **Not started**
 | Landing page (`/`) | Complete | Hero, product preview, audience, capabilities, workflow, support CTA, footer. |
 | Support CTA | Complete | All CTAs open a composed email to `support@maarivo.com`. Address is a placeholder pending confirmation. |
 | Demo dashboard (`/demo`) | Complete | Teacher workspace with sample data, five navigable views, working search, filters, chat interaction and request modal. |
-| Design tokens & typography | Complete | PRD palette, General Sans + Inter self-hosted in `public/fonts`, 8-point spacing via Tailwind utilities. |
+| Design tokens & typography | Complete | PRD palette, General Sans + Inter self-hosted in `public/fonts`, 8-point spacing via Tailwind utilities. General Sans italic added for editorial headlines. |
+| Photography revamp | Complete | Landing page rebuilt around seven self-hosted Unsplash education photos, full-bleed statement band, alternating role stories and photographic CTA. Reference layouts studied from Ojuwa and Synacad; no images copied from those sites. |
 
 ## Explicitly not production functionality
 
@@ -30,6 +31,12 @@ Status legend: **Complete** · **Partial** · **Placeholder** · **Not started**
 - All primary CTAs open a pre-composed support email.
 
 Visual screenshots were generated for review but could not be inspected by the implementing model; layout was verified through DOM measurements and automated audits instead.
+
+Post-revamp checks: no console errors, no failed image requests, 1.00 Lighthouse scores retained, no overflow at 390/768/1440, General Sans italic loads, above-the-fold image is eager and the rest lazy.
+
+## Image sourcing note
+
+Photography is self-hosted from Unsplash in `public/images`. Freepik was investigated but its pages block automated retrieval and its free licence requires attribution, so no Freepik asset was embedded. Images from ojuwa.com and synacad.com were not copied; only their layout principles were studied.
 
 ## Next up (PRD Phase 1)
 
