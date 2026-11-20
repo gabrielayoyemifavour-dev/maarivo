@@ -2,7 +2,7 @@
 
 ## Visual concept: evidence-first learning workspace
 
-The PRD pins the palette and type, so the identity comes from how those tokens are used rather than from new colours. Maarivo 2.0 uses one organising idea across the public site:
+The PRD pins the palette and type, so the identity comes from how those tokens are used rather than from new colours. Maarivo 2.0 uses one organising idea across the public site and the teacher workspace prototype:
 
 > Every important view should answer: what material is this based on, what was generated, what did a human approve, and what changed as a result?
 
@@ -16,6 +16,17 @@ This is a presentation and interaction principle derived from the PRD. It does n
 - **Photography:** retained self-hosted Unsplash images are used sparingly as human context. The closing CTA keeps one classroom photo; the hero and role previews use product surfaces instead.
 - **Roles:** the landing page has a working role switcher with sample teacher, student, school leader and parent previews. It also states that the interactive demo currently shows only the teacher workspace.
 
+## Teacher workspace: review desk
+
+The first application prototype avoids the standard metrics-dashboard layout. A teacher's primary job in the PRD is to check AI-generated material before students see it, so the workspace opens on that decision.
+
+- **Overview is a decision surface:** the main panel shows the selected draft, its source, what AI generated, what needs checking and what happens after approval. The evidence spine is the same 1px/nodes system used on the landing page.
+- **Assessments are a queue, not a card grid:** a selectable list sits beside a detail panel. The panel carries the full evidence trail and a "Mark as reviewed" action that only changes local preview state.
+- **Classes remain a register:** a table is the right shape for scanning assigned classes, topics, student counts and progress. It keeps a compact search and a clear empty-state action.
+- **Tutor stays grounded:** the chat keeps response modes, a scripted reply, a source line and an explicit demo badge. Inputs are 16px on mobile to prevent iOS zoom.
+- **Insights are evidence notes:** each observation states its evidence and links to the relevant view. No decorative chart was added.
+- **Support dialog uses the native `<dialog>` element:** this gives focus trapping and Escape handling from the browser instead of a hand-built modal. The mobile drawer also closes on Escape.
+
 ## Accessibility refinements
 
 Two derived tokens were darkened from the PRD's initial values to meet 4.5:1 contrast for small text:
@@ -25,7 +36,7 @@ Two derived tokens were darkened from the PRD's initial values to meet 4.5:1 con
 | Success | `#278568` | `#1F7359` | 4.04:1 on success-soft background; now 5.13:1 |
 | Accent deep | derived from `#9886E9` | `#6B54C2` | 3.88:1 on canvas; now 5.15:1 |
 
-The accent itself is unchanged; only the text variant was adjusted. The 2.0 page also adds a skip link, ARIA-pressed role buttons, `aria-controls` on the mobile menu and scroll padding for sticky-header anchors.
+The accent itself is unchanged; only the text variant was adjusted. The 2.0 pages also add a skip link, ARIA-pressed role buttons, `aria-controls` on the public mobile menu, scroll padding for sticky-header anchors, a 12px metadata floor and 16px mobile inputs.
 
 ## Demo honesty
 
